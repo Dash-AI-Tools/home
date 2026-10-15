@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import Character from '../components/Character.astro';
+
+const org = 'https://github.com/Dash-AI-Tools';
+const repo = `${org}/openspec-hud`;
+
+const known = [
+  ['A Claude Code mod', 'openspec-hud is built as a mod for Claude Code, so it lives in the tool you already develop with.'],
+  ['OpenSpec status', 'It tracks the status of your OpenSpec flow.'],
+  ['The stats that matter', 'It shows the stats that matter while you are developing.'],
+  ['Not published yet', 'The repository is public but has no code, README or license yet. The exact stats, screens and install steps have not been published.'],
+];
+---
+<Base
+  title="openspec-hud · Dash AI"
+  description="openspec-hud is a Claude Code mod from Dash AI that tracks the status of your OpenSpec flow and the stats that matter while you develop. Coming soon."
+  current="hud"
+>
+  <section class="section page-top">
+    <div class="wrap">
+      <div class="plate tone-sky hud-plate">
+        <Character kind="egg" class="hud-char" />
+        <div class="hud-copy">
+          <span class="quote">"OPENSPEC STATUS"</span>
+          <span class="name">openspec-hud</span>
+          <h1>Your OpenSpec flow, tracked from inside Claude Code.</h1>
+          <p>A Claude Code mod that tracks the status of your OpenSpec flow and the stats that matter while you develop.</p>
+          <p class="hud-cta">
+            <span class="status">Coming soon</span>
+            <a class="btn" href={repo} rel="noopener">Follow on GitHub
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tint" id="known">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What we can say so far.</h2>
+        <p>This page only states what is true today. Nothing here is a promise about features or dates.</p>
+      </div>
+      <ul class="spec">
+        {known.map(([h, p]) => (
+          <li><h3>{h}</h3><p>{p}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="shape">
+    <div class="wrap about">
+      <Character kind="egg" class="about-char" />
+      <div class="section-head">
+        <h2>Help shape it.</h2>
+        <p>If you use OpenSpec with Claude Code, tell us what you would want to see at a glance. It decides what gets built first.</p>
+      </div>
+      <p class="hud-cta">
+        <a class="btn violet" href="/#next">Tell us what you need
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg>
+        </a>
+        <a class="btn ghost" href={repo} rel="noopener">Follow on GitHub</a>
+      </p>
+    </div>
+  </section>
+
+  <Fragment slot="close">
+    <div class="close">
+      <h2>Also from Dash AI: DocMyRepos.</h2>
+      <Character kind="lead" />
+      <a class="btn" href="/doc-my-repos/">See DocMyRepos
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg>
+      </a>
+    </div>
+  </Fragment>
+</Base>

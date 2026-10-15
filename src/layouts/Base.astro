@@ -1,0 +1,84 @@
+---
+import '@fontsource-variable/fredoka';
+import '@fontsource-variable/figtree';
+import '../styles/global.css';
+import Mark from '../components/Mark.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  current?: 'home' | 'doc' | 'hud';
+}
+const { title, description, current = 'home' } = Astro.props;
+const org = 'https://github.com/Dash-AI-Tools';
+const repo = `${org}/doc-my-repos`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#12224a" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      try {
+        var t = localStorage.getItem('dash-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="Dash AI home">
+          <Mark class="mark" /><span><b>Dash</b> <span>AI</span></span>
+        </a>
+        <nav class="nav" aria-label="Main">
+          <a class="hide-s" href="/doc-my-repos/" aria-current={current === 'doc' ? 'page' : undefined}>DocMyRepos</a>
+          <a class="hide-s" href="/openspec-hud/" aria-current={current === 'hud' ? 'page' : undefined}>openspec-hud</a>
+          <a class="hide-s" href="/#next">What&#8217;s next</a>
+          <a href={org} rel="noopener">GitHub</a>
+          <button class="theme" type="button" id="theme" aria-label="Switch theme">
+            <svg class="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a.8.8 0 0 0-1-1A10 10 0 1 0 21.5 15.2a.8.8 0 0 0-1-1Z"/></svg>
+            <svg class="sun" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5a1 1 0 0 1 1 1V4a1 1 0 1 1-2 0V2.5a1 1 0 0 1 1-1Zm0 18.5a1 1 0 0 1 1 1v1.5a1 1 0 1 1-2 0V21a1 1 0 0 1 1-1ZM1.5 12a1 1 0 0 1 1-1H4a1 1 0 1 1 0 2H2.5a1 1 0 0 1-1-1Zm18.5 0a1 1 0 0 1 1-1h1.5a1 1 0 1 1 0 2H21a1 1 0 0 1-1-1ZM4.6 4.6a1 1 0 0 1 1.4 0l1 1A1 1 0 0 1 5.6 7l-1-1a1 1 0 0 1 0-1.4Zm12.4 12.4a1 1 0 0 1 1.4 0l1 1a1 1 0 0 1-1.4 1.4l-1-1a1 1 0 0 1 0-1.4ZM19.4 4.6a1 1 0 0 1 0 1.4l-1 1A1 1 0 0 1 17 5.6l1-1a1 1 0 0 1 1.4 0ZM7 17a1 1 0 0 1 0 1.4l-1 1A1 1 0 0 1 4.6 18l1-1A1 1 0 0 1 7 17Z"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <slot name="close" />
+        <div class="foot-row">
+          <span>© 2026 Dash AI. Open-source tools.</span>
+          <nav aria-label="Footer">
+            <a href="/">Home</a>
+            <a href="/doc-my-repos/">DocMyRepos</a>
+            <a href="/openspec-hud/">openspec-hud</a>
+            <a href={org} rel="noopener">GitHub org</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const root = document.documentElement;
+      const themeBtn = document.getElementById('theme');
+      themeBtn?.addEventListener('click', () => {
+        const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+        const cur = root.dataset.theme ?? (dark ? 'dark' : 'light');
+        const next = cur === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem('dash-theme', next); } catch {}
+      });
+
+    </script>
+  </body>
+</html>
