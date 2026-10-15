@@ -5,49 +5,98 @@ import Character from '../components/Character.astro';
 const org = 'https://github.com/Dash-AI-Tools';
 const repo = `${org}/openspec-hud`;
 
-const known = [
-  ['A Claude Code mod', 'openspec-hud is built as a mod for Claude Code, so it lives in the tool you already develop with.'],
-  ['OpenSpec status', 'It tracks the status of your OpenSpec flow.'],
-  ['The stats that matter', 'It shows the stats that matter while you are developing.'],
-  ['Not published yet', 'The repository is public but has no code, README or license yet. The exact stats, screens and install steps have not been published.'],
+const shots = [
+  { src: '/openspec-hud/vertical.png', w: 1861, h: 813, alt: 'OpenSpec HUD docked as a side panel next to the Claude Code transcript, showing the change, the flow step, the context bar and usage', cap: 'Side panel: docked next to the transcript in the fullscreen UI at 110+ columns.' },
+  { src: '/openspec-hud/horizontal.png', w: 1312, h: 612, alt: 'OpenSpec HUD as an inline bar above the Claude Code prompt', cap: 'Inline bar: above the prompt in the classic UI or a narrow terminal.' },
+];
+
+const shows = [
+  ['Skill and step', 'The last OpenSpec skill (openspec-*) or command (/opsx:*, /openspec-*) you used, mapped to the flow step. With none, the step is inferred from the change\u2019s files: no tasks.md is propose, open tasks is apply, all done is verify.'],
+  ['Change', 'The change named in your last /opsx:<cmd> <change>, otherwise the most recently edited change under openspec/changes/, archive excluded.'],
+  ['Tasks', 'The current and next unchecked items in tasks.md, with done and total counts and what remains. They refresh after edits under openspec/, at each turn end and every 10 seconds.'],
+  ['Agents', 'Subagents that are running right now, with their type, status and task description.'],
+  ['MCP', 'The MCP server and tool being called, such as github \u00b7 get_me, shown only while the call is running.'],
+  ['Context and usage', 'A context-window bar, tokens used out of the window, the 5-hour and 7-day rate-limit windows on subscriptions, and session cost.'],
 ];
 ---
 <Base
   title="openspec-hud · Dash AI"
-  description="openspec-hud is a Claude Code mod from Dash AI that tracks the status of your OpenSpec flow and the stats that matter while you develop. Coming soon."
+  description="openspec-hud is a Claude Code mod that shows your OpenSpec flow in a side panel: flow step, tasks, running agents, MCP calls, context and usage."
   current="hud"
 >
   <section class="section page-top">
     <div class="wrap">
       <div class="plate tone-sky hud-plate">
-        <Character kind="egg" class="hud-char" />
+        <Character kind="guest" class="hud-char" />
         <div class="hud-copy">
           <span class="quote">"OPENSPEC STATUS"</span>
           <span class="name">openspec-hud</span>
-          <h1>Your OpenSpec flow, tracked from inside Claude Code.</h1>
-          <p>A Claude Code mod that tracks the status of your OpenSpec flow and the stats that matter while you develop.</p>
+          <h1>Your OpenSpec flow, in a side panel next to the transcript.</h1>
+          <p>A Claude Code mod that shows an <a href="https://github.com/Fission-AI/OpenSpec" rel="noopener">OpenSpec</a> HUD while you work: the flow step, your tasks, running agents, MCP calls, context and usage.</p>
+          <ul class="proof" aria-label="At a glance"><li>Claude Code plugin</li><li>TypeScript</li><li>v0.3.0</li></ul>
           <p class="hud-cta">
-            <span class="status">Coming soon</span>
-            <a class="btn" href={repo} rel="noopener">Follow on GitHub
+            <a class="btn" href={repo} rel="noopener">View on GitHub
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg>
             </a>
+            <a class="btn ghost" href="#install">Install</a>
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section tint" id="known">
+  <section class="section tint" id="see-it">
     <div class="wrap">
       <div class="section-head">
-        <h2>What we can say so far.</h2>
-        <p>This page only states what is true today. Nothing here is a promise about features or dates.</p>
+        <h2>See it working.</h2>
+        <p>Two layouts, one HUD. Sections with nothing to show, such as no tasks or no running agent, are left out.</p>
       </div>
+      <div class="term-shots">
+        {shots.map((s) => (
+          <figure class="term-shot">
+            <div class="shot-scroll" tabindex="0" role="group" aria-label="Screenshot, scrolls sideways on small screens">
+              <img src={s.src} alt={s.alt} width={s.w} height={s.h} decoding="async" />
+            </div>
+            <figcaption>{s.cap} <a href={s.src} target="_blank" rel="noopener">Open full size</a></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="what">
+    <div class="wrap">
+      <div class="section-head"><h2>What it shows.</h2></div>
       <ul class="spec">
-        {known.map(([h, p]) => (
+        {shows.map(([h, p]) => (
           <li><h3>{h}</h3><p>{p}</p></li>
         ))}
       </ul>
+    </div>
+  </section>
+
+  <section class="section tint" id="install">
+    <div class="wrap">
+      <div class="section-head"><h2>Install it.</h2></div>
+      <div class="quick">
+        <div class="notes">
+          <p><strong>Run it at the Claude Code prompt.</strong> Answer <code>y</code> to add the marketplace, then pick a scope: User for every session, or Project for one repository. The panel opens right away.</p>
+          <p><strong>Toggle it with <code>/openspec-hud</code>.</strong> Closing it with its close mark keeps it closed in later sessions until you open it again.</p>
+          <p><strong>Docking needs the fullscreen UI.</strong> Set <code>"tui": "fullscreen"</code> in <code>~/.claude/settings.json</code> and use a terminal 110+ columns wide. Otherwise the panel opens inline above the prompt.</p>
+          <p><strong>No license file yet.</strong> The repository does not include one at the time of writing.</p>
+        </div>
+        <div class="code">
+          <button class="copy" type="button" id="copy">Copy</button>
+          <pre id="snippet"><code><span class="c"># at the prompt of a Claude Code session</span>
+/plugin install openspec-hud --marketplace davidcp90/mods
+
+<span class="c"># then, in a repo that uses OpenSpec</span>
+/opsx:propose &lt;idea&gt;
+
+<span class="c"># show or hide the panel</span>
+/openspec-hud</code></pre>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -56,13 +105,13 @@ const known = [
       <Character kind="egg" class="about-char" />
       <div class="section-head">
         <h2>Help shape it.</h2>
-        <p>If you use OpenSpec with Claude Code, tell us what you would want to see at a glance. It decides what gets built first.</p>
+        <p>If you use OpenSpec with Claude Code, tell us what else you would want to see at a glance. It decides what gets built next.</p>
       </div>
       <p class="hud-cta">
         <a class="btn violet" href="/#next">Tell us what you need
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg>
         </a>
-        <a class="btn ghost" href={repo} rel="noopener">Follow on GitHub</a>
+        <a class="btn ghost" href={repo} rel="noopener">Open the repo</a>
       </p>
     </div>
   </section>

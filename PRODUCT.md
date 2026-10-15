@@ -22,7 +22,7 @@ The homepage for Dash AI's open-source projects (GitHub org `Dash-AI-Tools`). It
 
 Projects shown (the user ruled that the `forkflame-*` repos are not real projects and must not appear on the page):
 - **DocMyRepos** (live, MIT, TypeScript, `Dash-AI-Tools/doc-my-repos`): searches and showcases the Markdown documentation of all repositories in a GitHub organization in one place.
-- **openspec-hud** (upcoming, `Dash-AI-Tools/openspec-hud`): a Claude Code mod that tracks the status of the OpenSpec flow and the stats that matter while developing (per the user). The GitHub repo is public but still empty (no code, README, license or commits as of 2026-10-14). It is presented as coming soon, with only that description. Do not invent features, screenshots, install steps or dates.
+- **openspec-hud** (live, `Dash-AI-Tools/openspec-hud`, TypeScript, v0.3.0 per its plugin.json, repo created 2026-10-15): a Claude Code mod that shows an OpenSpec HUD in a side panel (fullscreen UI, 110+ columns) or as an inline bar above the prompt. Shows skill/step, change, tasks, running agents, MCP calls, context and usage. Install per its README: `/plugin install openspec-hud --marketplace davidcp90/mods`. The repo has no license file and no GitHub description yet. Its two screenshots are copied to `public/openspec-hud/`.
 
 ## Positioning
 

@@ -149,17 +149,4 @@ docker compose up -d --build --wait
         });
       });
 
-      // copy
-      const copy = document.getElementById('copy');
-      copy?.addEventListener('click', async () => {
-        const text = document.getElementById('snippet')!.textContent ?? '';
-        try {
-          await navigator.clipboard.writeText(text);
-          copy.textContent = 'Copied';
-        } catch {
-          copy.textContent = 'Press Ctrl/Cmd+C';
-        }
-        setTimeout(() => (copy.textContent = 'Copy'), 1800);
-      });
-
 </script>
