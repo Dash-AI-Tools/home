@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-15T04:13:33Z",
+  "title": "Design System: Dash AI Open Source",
+  "extensions": {
+    "colorMeta": {
+      "navy": { "role": "primary", "displayName": "Slab Navy", "canonical": "#12224a", "tonalRamp": ["#060b1d", "#0b1530", "#12224a", "#2a3c70", "#455691", "#7684b4", "#aeb7d4", "#dfe3f0"] },
+      "violet": { "role": "primary", "displayName": "Slash Violet", "canonical": "#7b2ff7", "tonalRamp": ["#2a0a60", "#47139a", "#6320d8", "#7b2ff7", "#9a5cf9", "#b88afb", "#d6b9fc", "#efe4fe"] },
+      "violet-text": { "role": "primary", "displayName": "Violet Ink", "canonical": "#6320d8", "tonalRamp": ["#240a5a", "#3b1291", "#6320d8", "#7b46e4", "#9a73ec", "#b79bff", "#d4c3fb", "#ece4fd"] },
+      "ground": { "role": "neutral", "displayName": "Lavender Ground", "canonical": "#ede7ff", "tonalRamp": ["#3a3356", "#575078", "#7d76a1", "#a39ec6", "#c4bde6", "#e2d9fb", "#ede7ff", "#f7f3ff"] },
+      "lilac": { "role": "secondary", "displayName": "Lilac Plate", "canonical": "#f7f3ff", "tonalRamp": ["#1c2556", "#3d4783", "#6c75b0", "#a2a8d3", "#cfd2ea", "#e8e6f7", "#f2eefb", "#f7f3ff"] },
+      "sky": { "role": "secondary", "displayName": "Sky Plate", "canonical": "#dcebff", "tonalRamp": ["#15305a", "#2d5a96", "#5a8fd0", "#8db5e6", "#b4d1f2", "#cde1fa", "#dcebff", "#eef5ff"] },
+      "rose": { "role": "secondary", "displayName": "Rose Plate", "canonical": "#ffe2ee", "tonalRamp": ["#5c1e48", "#9a3a73", "#cf6a9f", "#ec9cc2", "#f8c0da", "#ffd2e5", "#ffe2ee", "#fff1f7"] },
+      "sun": { "role": "secondary", "displayName": "Sun Plate", "canonical": "#fff0bf", "tonalRamp": ["#52430a", "#8a7116", "#c4a42b", "#e6c85c", "#f5dc8c", "#fde8a6", "#fff0bf", "#fff8de"] },
+      "mint": { "role": "secondary", "displayName": "Mint Plate", "canonical": "#d3f6e4", "tonalRamp": ["#153a30", "#26705a", "#3fa384", "#76c9aa", "#a5e0c8", "#bfeed9", "#d3f6e4", "#eafbf2"] },
+      "rose-ribbon": { "role": "tertiary", "displayName": "Rose Ribbon", "canonical": "#ff5c9a", "tonalRamp": ["#5a1031", "#951f55", "#d03577", "#ff5c9a", "#ff85b3", "#ffabcb", "#ffd0e1", "#ffebf2"] },
+      "sun-ribbon": { "role": "tertiary", "displayName": "Sun Ribbon", "canonical": "#f5a300", "tonalRamp": ["#4d3300", "#855a00", "#c27f00", "#f5a300", "#ffb92e", "#ffcf6b", "#ffe3a6", "#fff3d6"] },
+      "mint-ribbon": { "role": "tertiary", "displayName": "Mint Ribbon", "canonical": "#12b87a", "tonalRamp": ["#053d29", "#0a6e49", "#0e9a66", "#12b87a", "#4dd09f", "#85e1bd", "#b9f0da", "#e1f9ee"] },
+      "night-ground": { "role": "neutral", "displayName": "Night Ground", "canonical": "#0c1330", "tonalRamp": ["#04071a", "#0c1330", "#121b40", "#172250", "#1c2556", "#3b4a8a", "#7886c0", "#b6bfe0"] },
+      "night-ink": { "role": "neutral", "displayName": "Night Ink", "canonical": "#f1eeff", "tonalRamp": ["#6a6891", "#8785ad", "#a5a3c8", "#bdbbdb", "#d3d1ec", "#e3e0f8", "#f1eeff", "#faf9ff"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The single hero h1 in Fredoka 700." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2 headings in Fredoka 700." },
+      "title": { "displayName": "Title", "purpose": "Plate names, spec-list headings, step headings in Fredoka 600-700." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs and wordmark in Figtree." },
+      "label": { "displayName": "Label", "purpose": "Quoted plate labels, buttons, chips and links in Fredoka." },
+      "ai-face": { "displayName": "AI Face", "purpose": "The letters AI inside Fredoka headings, set in Figtree 800 because Fredoka's capital I reads as a lowercase l." }
+    },
+    "shadows": [
+      { "name": "goods-lift", "value": "0 14px 28px -12px rgb(18 34 74 / 0.32), 0 3px 6px -2px rgb(18 34 74 / 0.14)", "purpose": "Resting depth for plates, panels and buttons (light)." },
+      { "name": "goods-lift-dark", "value": "0 18px 30px -14px rgb(0 0 0 / 0.7), 0 3px 6px -2px rgb(0 0 0 / 0.4)", "purpose": "Resting depth in dark mode." },
+      { "name": "keyline-ring", "value": "0 0 0 3px var(--ring)", "purpose": "Navy ring outside the 5px keyline border on every raised object." }
+    ],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Lifts, tilts, pops and wiggles on plates, buttons, chips and tabs. Disabled under reduced motion." },
+      { "name": "plate-pop", "value": "0.9s var(--ease) both, 70ms stagger per plate", "purpose": "Roster entrance." }
+    ],
+    "breakpoints": [
+      { "name": "roster-two", "value": "560px" },
+      { "name": "nav-full", "value": "720px" },
+      { "name": "split", "value": "860px" },
+      { "name": "roster-three", "value": "960px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Plate (hatched)",
+      "kind": "card",
+      "refersTo": "plate",
+      "description": "Catalog plate for a live project: quoted label, character, name pill, born line, description, link.",
+      "html": "<a class=\"ds-plate\" href=\"#\"><span class=\"ds-quote\">\"DOCS SEARCH\"</span><svg class=\"ds-char\" viewBox=\"0 0 1770 574\" aria-hidden=\"true\"><path fill=\"#12224a\" d=\"M130 0H1356L1010 574H130A130 130 0 0 1 0 444V130A130 130 0 0 1 130 0Z\"/><path fill=\"#7b2ff7\" d=\"M1489 0H1738Q1790 0 1758 52L1428 574H1160Q1108 574 1140 522Z\"/><circle cx=\"380\" cy=\"240\" r=\"84\" fill=\"#fff\"/><circle cx=\"680\" cy=\"240\" r=\"84\" fill=\"#fff\"/><circle cx=\"380\" cy=\"240\" r=\"38\" fill=\"#12224a\"/><circle cx=\"680\" cy=\"240\" r=\"38\" fill=\"#12224a\"/><path d=\"M440 395Q530 465 620 395\" fill=\"none\" stroke=\"#fff\" stroke-width=\"24\" stroke-linecap=\"round\"/></svg><span class=\"ds-name\">DocMyRepos</span><span class=\"ds-born\">Live · MIT · born 9 Oct 2026</span><span class=\"ds-line\">Search and showcase the Markdown docs of every repository in your GitHub org.</span><span class=\"ds-link\">View on GitHub</span></a>",
+      "css": ".ds-plate { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 340px; padding: 24px; background: #f7f3ff; color: #12224a; text-decoration: none; border: 5px solid #fff; border-radius: 34px; box-shadow: 0 0 0 3px #12224a, 0 14px 28px -12px rgb(18 34 74 / 0.32), 0 3px 6px -2px rgb(18 34 74 / 0.14); transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1); } .ds-plate:hover { transform: translateY(-5px) rotate(-0.5deg); } .ds-plate:focus-visible { outline: 3px solid #7b2ff7; outline-offset: 3px; } .ds-quote { align-self: flex-end; font-family: 'Fredoka Variable', Fredoka, ui-rounded, sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em; color: #6320d8; } .ds-char { width: 100%; height: auto; } .ds-name { font-family: 'Fredoka Variable', Fredoka, ui-rounded, sans-serif; font-weight: 600; font-size: 1.6rem; line-height: 1; background: #12224a; color: #fff; padding: 8px 20px 9px; border-radius: 999px; margin-top: 4px; } .ds-born { font-weight: 700; font-size: 0.95rem; } .ds-line { font-size: 1rem; color: #3b4a78; max-width: 44ch; } .ds-link { font-family: 'Fredoka Variable', Fredoka, ui-rounded, sans-serif; font-weight: 600; font-size: 1.1rem; text-decoration: underline; text-decoration-thickness: 3px; text-decoration-color: #7b2ff7; text-underline-offset: 0.25em; }"
+    },
+    {
+      "name": "Egg Plate (unhatched)",
+      "kind": "card",
+      "refersTo": "plate",
+      "description": "Plate for a project not yet shipped: dashed outline character with closed lids, honest born line, violet name pill when the ribbon is violet.",
+      "html": "<a class=\"ds-egg\" href=\"#\"><span class=\"ds-quote\">\"OPENSPEC STATUS\"</span><svg class=\"ds-char\" viewBox=\"0 0 1770 574\" aria-hidden=\"true\"><path fill=\"transparent\" stroke=\"#12224a\" stroke-width=\"18\" stroke-dasharray=\"44 34\" d=\"M130 0H1356L1010 574H130A130 130 0 0 1 0 444V130A130 130 0 0 1 130 0Z\"/><path fill=\"transparent\" stroke=\"#7b2ff7\" stroke-width=\"18\" stroke-dasharray=\"44 34\" d=\"M1489 0H1738Q1790 0 1758 52L1428 574H1160Q1108 574 1140 522Z\"/><path d=\"M300 250Q380 300 460 250M600 250Q680 300 760 250M470 390Q530 420 590 390\" fill=\"none\" stroke=\"#12224a\" stroke-width=\"24\" stroke-linecap=\"round\"/></svg><span class=\"ds-name\">openspec-hud</span><span class=\"ds-born\">Coming soon</span><span class=\"ds-line\">A Claude Code mod that tracks the status of your OpenSpec flow.</span><span class=\"ds-link\">Follow the repo</span></a>",
+      "css": ".ds-egg { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 340px; padding: 24px; background: #dcebff; color: #12224a; text-decoration: none; border: 5px solid #fff; border-radius: 34px; box-shadow: 0 0 0 3px #12224a, 0 14px 28px -12px rgb(18 34 74 / 0.32), 0 3px 6px -2px rgb(18 34 74 / 0.14); transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1); } .ds-egg:hover { transform: translateY(-5px) rotate(-0.5deg); } .ds-egg:focus-visible { outline: 3px solid #7b2ff7; outline-offset: 3px; } .ds-quote { align-self: flex-end; font-family: 'Fredoka Variable', Fredoka, ui-rounded, sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em; color: #6320d8; } .ds-char { width: 100%; height: auto; } .ds-name { font-family: 'Fredoka Variable', Fredoka, ui-rounded, sans-serif; font-weight: 600; font-size: 1.6rem; line-height: 1; background: #7b2ff7; color: #fff; padding: 8px 20px 9px; border-radius: 999px; margin-top: 4px; } .ds-born { font-weight: 700; font-size: 0.95rem; } .ds-line { font-size: 1rem; color: #3b4a78; max-width: 44ch; } .ds-link { font-family: 'Fredoka Variable', Fredoka, ui-rounded, sans-serif; font-weight: 600; font-size: 1.1rem; text-decoration: underline; text-decoration-thickness: 3px; text-decoration-color: #7b2ff7; text-underline-offset: 0.25em; }"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "custom",
+      "refersTo": "button-primary",
+      "description": "Navy pill with arrow; the main call to action.",
+      "html": "<a class=\"ds-btn\" href=\"#\">View on GitHub <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 10px; font-family: 'Fredoka Variable', Fredoka, ui-rounded, sans-serif; font-weight: 600; font-size: 1.25rem; text-decoration: none; background: #12224a; color: #fff; padding: 16px 28px; border-radius: 999px; box-shadow: 0 14px 28px -12px rgb(18 34 74 / 0.32), 0 3px 6px -2px rgb(18 34 74 / 0.14); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn svg { width: 22px; height: 22px; fill: currentColor; transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn:hover { transform: translateY(-3px) rotate(-1deg); } .ds-btn:hover svg { transform: translateX(4px); } .ds-btn:active { transform: translateY(0); } .ds-btn:focus-visible { outline: 3px solid #7b2ff7; outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "custom",
+      "refersTo": "button-ghost",
+      "description": "Transparent pill with a 3px ring; secondary action.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Follow on GitHub</a>",
+      "css": ".ds-btn-ghost { display: inline-flex; font-family: 'Fredoka Variable', Fredoka, ui-rounded, sans-serif; font-weight: 600; font-size: 1.25rem; text-decoration: none; background: transparent; color: #12224a; padding: 16px 28px; border-radius: 999px; box-shadow: inset 0 0 0 3px #12224a; transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-ghost:hover { transform: translateY(-3px) rotate(-1deg); } .ds-btn-ghost:focus-visible { outline: 3px solid #7b2ff7; outline-offset: 3px; }"
+    },
+    {
+      "name": "Survey Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Pill checkbox for the what-to-build-next survey; violet when selected.",
+      "html": "<label class=\"ds-chip\"><input type=\"checkbox\"><span>Testing and QA</span></label>",
+      "css": ".ds-chip { position: relative; cursor: pointer; display: inline-block; } .ds-chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; } .ds-chip span { display: inline-block; font-family: 'Fredoka Variable', Fredoka, ui-rounded, sans-serif; font-weight: 600; font-size: 1.1rem; background: #fff; color: #12224a; border: 3px solid #12224a; border-radius: 999px; padding: 10px 20px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-chip:hover span { transform: translateY(-2px) rotate(-0.8deg); } .ds-chip input:checked + span { background: #7b2ff7; border-color: #7b2ff7; color: #fff; } .ds-chip input:focus-visible + span { outline: 3px solid #7b2ff7; outline-offset: 3px; }"
+    },
+    {
+      "name": "Ruled Spec Row",
+      "kind": "custom",
+      "refersTo": "plate",
+      "description": "A row of the quoted spec list: straight-quoted Fredoka heading, soft paragraph, ring rules above and below.",
+      "html": "<div class=\"ds-spec\"><h3>One search</h3><p>Postgres full-text search across all synced repos, with highlighted snippets.</p></div>",
+      "css": ".ds-spec { display: grid; grid-template-columns: minmax(200px, 5fr) 7fr; gap: 8px 40px; align-items: baseline; padding-block: 26px; border-top: 3px solid #12224a; border-bottom: 3px solid #12224a; color: #12224a; } .ds-spec h3 { margin: 0; font-family: 'Fredoka Variable', Fredoka, ui-rounded, sans-serif; font-weight: 700; font-size: 2rem; line-height: 1; letter-spacing: -0.01em; } .ds-spec h3::before, .ds-spec h3::after { content: '\"'; color: #6320d8; } .ds-spec p { margin: 0; max-width: 58ch; color: #3b4a78; }"
+    },
+    {
+      "name": "Name Pill",
+      "kind": "custom",
+      "refersTo": "name-pill",
+      "description": "The navy (or violet) Fredoka pill carrying a project name.",
+      "html": "<span class=\"ds-pill\">DocMyRepos</span> <span class=\"ds-pill ds-violet\">openspec-hud</span>",
+      "css": ".ds-pill { display: inline-block; font-family: 'Fredoka Variable', Fredoka, ui-rounded, sans-serif; font-weight: 600; font-size: 1.5rem; line-height: 1; background: #12224a; color: #fff; padding: 8px 20px 9px; border-radius: 999px; } .ds-violet { background: #7b2ff7; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Character Catalog",
+    "overview": "The org is a character-goods catalog. Each project is a plate: a pastel card with a white keyline, a small mascot built only from the Dash AI slash mark, a quoted function label, a navy name pill, a birthday and one line. Navy and violet are the only saturated colors in the chrome; every plate adds one pastel and one saturated ribbon on its character's slash. Light and dark are both first-class. The shipped hero is a three-plate roster: DocMyRepos, the openspec-hud egg and the Your idea egg.",
+    "keyCharacteristics": [
+      "Pastel plate per project on a lavender ground, white keyline plus navy ring around every raised object.",
+      "Characters drawn from the slab-and-slash mark only; hatched characters have eyes, unhatched ones are dashed outlines with closed lids.",
+      "Fredoka for display and labels, Figtree for reading text.",
+      "Pill is the only control shape; large soft radii on every panel.",
+      "Straight-quoted function label on every plate."
+    ],
+    "rules": [
+      { "name": "The Two Saturated Rule", "body": "Navy and violet are the only saturated colors in structure. Ribbon colors appear only on a character's slash.", "section": "colors" },
+      { "name": "The Violet Ink Rule", "body": "Violet as text always uses the text-safe value (#6320d8 light, #b79bff dark); bright violet is for fills, outlines and decoration.", "section": "colors" },
+      { "name": "The Ink Inversion Rule", "body": "Dark mode inverts navy fills (name pill, primary button) to Night Ink with navy text rather than keeping navy on navy.", "section": "colors" },
+      { "name": "The Straight Quote Rule", "body": "Function labels and the spec-list headings are wrapped in straight ASCII double quotes. Curly quotes are not used.", "section": "typography" },
+      { "name": "The AI Face Rule", "body": "The letters AI inside headings are set in Figtree 800, because Fredoka's capital I reads as a lowercase l.", "section": "typography" },
+      { "name": "The Display-Is-Rounded Rule", "body": "Headings, names and controls are Fredoka; body copy is never Fredoka.", "section": "typography" },
+      { "name": "The Cut-Out Rule", "body": "Raised objects always carry the keyline plus ring pair; the keyline is white in light mode and the ground color in dark mode.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do give every project its own plate: tone, ribbon, quoted function label, name pill, born line, one-line description, link.",
+      "Do draw characters only from the slab-and-slash mark; hatched ones with eyes, unhatched ones as dashed eggs.",
+      "Do keep the quote label in straight ASCII quotes and literal in meaning.",
+      "Do set \"AI\" in headings with the `ai` class (Figtree 800).",
+      "Do use Violet Ink for violet text on pastels and put bright violet on fills and outlines.",
+      "Do ship both themes: define every new color as a light/dark pair and mirror it in the `data-theme` and `prefers-color-scheme` blocks.",
+      "Do use the keyline plus ring pair on any raised object."
+    ],
+    "donts": [
+      "Don't use curly quotes around labels.",
+      "Don't add a third saturated color to the chrome; extra hues belong on a ribbon only.",
+      "Don't use hard offset shadows; depth is the soft Goods Lift plus the ring.",
+      "Don't set body copy in Fredoka or headings in system fonts.",
+      "Don't fill an egg or give it eyes; it stays unhatched until the project ships.",
+      "Don't build the dark hero, screenshot, three-feature-cards template.",
+      "Don't show a project that is not real, or invent features, dates or stats for an unhatched plate."
+    ]
+  }
+}

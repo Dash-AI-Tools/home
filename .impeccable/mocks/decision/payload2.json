@@ -1,0 +1,103 @@
+{
+  "title": "Bolder hand: foreign forms for Dash AI's OSS homepage",
+  "question": "Bolder register: no grounded directions this round. The roll leads with the Character Catalog. Keep it, take an alternate, or re-roll again. Every world keeps the navy and violet slash.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The Character Catalog",
+      "kicker": "THE ROLL",
+      "lineage": "character goods catalog pages: rounded mascots, name plates, birthdays",
+      "thesis": "Every project is a character with a name plate, a birthday and one line about what it does.",
+      "palette": ["#12224A", "#7B2FF7", "#EDE7FF", "#FFFFFF"],
+      "materials": ["pastel lavender grounds", "flat fills", "white keylines", "bubble-face name plates"],
+      "viewport": "A pastel grid of project plates: DocMyRepos large with its slash-built character, openspec-hud as a not-yet-hatched plate, the forkflame-* repos as guest samples; each plate shows a real birthday (repo creation date), license and one line, with the GitHub action on the lead plate.",
+      "risk": "Characters are all authored art: the cast has to be drawn from the slash mark, or the grid turns into generic cards. The catalog's popularity ranking is dropped because no real numbers exist.",
+      "raised": [
+        {"from": "challenger-quote", "raise": "Each plate carries its literal function in straight quotes, 'DOCS SEARCH', 'OKF FILTERS', so the cute character never hides what the tool does."}
+      ],
+      "html": ".impeccable/mocks/decision/assigned2.html",
+      "htmlFrame": "1440x900"
+    },
+    {
+      "id": "challenger-quote",
+      "label": "Quoted Industrial Labels",
+      "verdict": "competitive",
+      "lineage": "industrial streetwear: quoted words, zip-tie tags, hazard stripes",
+      "thesis": "Name the obvious in big quotes: \"DOCS\", \"SEARCH\", \"SELF-HOSTED\".",
+      "palette": ["#FFFFFF", "#12224A", "#7B2FF7"],
+      "materials": ["white cotton ground", "navy nylon blocks", "diagonal hazard stripes", "violet zip-tie tags"],
+      "viewport": "Giant navy caps in straight quotes (\"DOCS FOR EVERY REPO\") over white; a diagonal stripe band crosses the first screen; stenciled label plates for MIT, LIVE and COMING SOON; GitHub action as a tag.",
+      "case": "Wins on clarity: every zone is named by what it is. Loses on audience identification: developers do not identify with a workwear aesthetic. Orange tags translated to the brand violet.",
+      "risk": "Hazard stripes can read as warning or error to developers.",
+      "html": ".impeccable/mocks/decision/quote.html",
+      "htmlFrame": "1440x900"
+    },
+    {
+      "id": "challenger-leather",
+      "label": "Bound Volumes on a Shelf",
+      "verdict": "competitive",
+      "lineage": "skeuomorph leather studio: stitched leather, linen, shelf wood",
+      "thesis": "The org is a shelf and each repo is a bound volume you pull down and open.",
+      "palette": ["#12224A", "#7B2FF7", "#8A94B8", "#D9DCE8"],
+      "materials": ["navy cloth binding", "violet ribbon bookmark", "grey linen", "paper pages"],
+      "viewport": "Two bound volumes on a shelf, DocMyRepos pulled forward with a violet ribbon; its open page carries the real screenshot, and the GitHub action is a ribbon pull.",
+      "case": "Wins on product clarity: docs as books is the mechanism itself. Loses on audience identification: heavy skeuomorphism reads dated to developers. Tan leather and walnut translated to navy cloth and linen.",
+      "risk": "Skeuomorph texture work is expensive in CSS and ages fast.",
+      "html": ".impeccable/mocks/decision/leather.html",
+      "htmlFrame": "1440x900"
+    },
+    {
+      "id": "challenger-cracktro",
+      "label": "Cracktro Scroller",
+      "verdict": "competitive",
+      "lineage": "demoscene cracktro title screens",
+      "thesis": "One bitmap line at a time over a black void, rank is depth, nothing is boxed.",
+      "palette": ["#07091A", "#F3F0FF", "#7B2FF7"],
+      "materials": ["emissive black void", "one bitmap face", "drifting dust layers"],
+      "viewport": "A dead-still ivory line 'DOCMYREPOS' in front, project names drifting on baselines behind it at slower rates, no boxes or rules; the GitHub action is the frontmost reversed glyph cell.",
+      "case": "Wins on audience identification: developers read it as their own folklore. Loses on product clarity: baselines say nothing about search or docs unless the real docs tree scrolls through them.",
+      "risk": "Terminal and hacker aesthetic is the predictable dev-tool reading.",
+      "html": ".impeccable/mocks/decision/cracktro.html",
+      "htmlFrame": "1440x900"
+    },
+    {
+      "id": "challenger-sixpack",
+      "label": "Night Instrument Six-Pack",
+      "verdict": "declined",
+      "lineage": "small-aircraft instrument panel",
+      "thesis": "Six calm dials, each owning one truth.",
+      "palette": ["#0A0A0A", "#F5F5F0", "#9CFF6B"],
+      "materials": ["matte black panel", "radium-green needles"],
+      "viewport": "Six dials.",
+      "case": "Fuses poorly: gauges need live values and the project has no stats to show without inventing them.",
+      "kept": "Each element owns exactly one truth: one status or one fact per plate.",
+      "risk": "Forces invented metrics."
+    },
+    {
+      "id": "challenger-papercut",
+      "label": "Layered Papercut",
+      "verdict": "declined",
+      "lineage": "Lowicz folk papercut",
+      "thesis": "Flat colored papers pasted in layers.",
+      "palette": ["#12224A", "#7B2FF7", "#FFFFFF"],
+      "materials": ["flat glossy paper", "overlap-only depth"],
+      "viewport": "A roundel built from layers.",
+      "case": "Fuses weakly: nothing in the product maps to folk symmetry, and developers do not identify with it, though the two-shape Dash mark is a natural cut-paper pair.",
+      "kept": "Depth made only by overlap and never by shadow or tone.",
+      "risk": "Pretty, says nothing about docs."
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "A clean open-source product page: headline, screenshot, feature grid, quickstart.",
+    "palette": ["#FFFFFF", "#12224A", "#7B2FF7"],
+    "materials": ["clean grid", "product screenshots"],
+    "viewport": "Headline and GitHub button left, DocMyRepos screenshot right, three feature cards below.",
+    "risk": "Indistinguishable from other OSS landing pages by design.",
+    "html": ".impeccable/mocks/decision/canon.html",
+    "htmlFrame": "1440x900"
+  },
+  "steer": true
+}

@@ -1,0 +1,27 @@
+---
+// One catalog plate: character, quoted function label, name plate, birthday line.
+interface Props {
+  name: string;
+  quote: string;
+  kind: 'lead' | 'egg' | 'guest';
+  tone: 'lilac' | 'sky' | 'rose' | 'sun' | 'mint';
+  born: string;
+  line: string;
+  href?: string;
+  status?: string;
+  class?: string;
+  style?: string;
+}
+const { name, quote, kind, tone, born, line, href, status, class: className, style } = Astro.props;
+import Character from './Character.astro';
+const Tag = href ? 'a' : 'div';
+---
+<Tag class:list={['plate', `tone-${tone}`, `kind-${kind}`, className]} href={href} style={style} {...(href ? { rel: 'noopener' } : {})}>
+  <span class="quote">"{quote}"</span>
+  <Character kind={kind} />
+  <span class="name">{name}</span>
+  <span class="born">{born}</span>
+  <span class="line">{line}</span>
+  {status && <span class="status">{status}</span>}
+  <slot />
+</Tag>

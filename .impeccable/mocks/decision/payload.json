@@ -1,0 +1,128 @@
+{
+  "title": "Choose the visual world for Dash AI's OSS homepage",
+  "question": "The roll assigned the Thumb-Index Reference Volume. Keep it, take the pick or an alternate, or re-roll. All worlds keep the Dash AI navy and violet slash.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Thumb-Index Reference Volume",
+      "kicker": "THE ROLL",
+      "lineage": "dictionary and encyclopedia thumb-index tabs",
+      "thesis": "One reference volume where every project and every section is a notched tab you can thumb straight to.",
+      "palette": ["#12224A", "#7B2FF7", "#F4F5FA", "#FFFFFF"],
+      "materials": ["cool-white coated page", "die-cut tab stack", "navy ink"],
+      "viewport": "A tall navy tab stack cut into the right edge (Search, DocMyRepos, openspec-hud, OKF, Self-host); the left page carries a huge headline and a working search line showing a highlighted hit from real docs; GitHub button sits on the first tab-height line.",
+      "risk": "Turns into a skeuomorphic book if the tabs are drawn instead of working as sticky section navigation.",
+      "raised": [
+        {"from": "challenger-wayfinding", "raise": "Each tab shows only what is ahead: one destination, one label, active tab repainted instantly, never a menu."}
+      ],
+      "html": ".impeccable/mocks/decision/assigned.html",
+      "htmlFrame": "1440x900"
+    },
+    {
+      "id": "model-pick",
+      "label": "The Drawing Sheet",
+      "kicker": "IMPECCABLE'S PICK",
+      "lineage": "ISO engineering drawing sheets: zone grid, title block, revision table",
+      "thesis": "Every project is a controlled drawing with a title block, because DocMyRepos' own OKF metadata card is one.",
+      "palette": ["#FFFFFF", "#12224A", "#7B2FF7", "#C9CEDD"],
+      "materials": ["drafting-sheet white", "navy line-work", "violet revision marks"],
+      "viewport": "A framed sheet with A-D / 1-6 zone marks; the real product screenshot sits as the drawing, the title block bottom right states PROJECT, TYPE, LICENSE MIT, STATUS and the GitHub action.",
+      "risk": "Close to the blueprint look dev tools already use, and the title-block grid can feel cold if the type is timid.",
+      "html": ".impeccable/mocks/decision/pick.html",
+      "htmlFrame": "1440x900"
+    },
+    {
+      "id": "challenger-wayfinding",
+      "label": "Terminal Wayfinding",
+      "verdict": "competitive",
+      "lineage": "airport and terminal signage bands",
+      "thesis": "The org is a terminal and each repo is a gate, signed band by band.",
+      "palette": ["#12224A", "#FFFFFF", "#7B2FF7"],
+      "materials": ["sign-panel bands", "arrow pictograms", "split-flap updates"],
+      "viewport": "Full-width navy sign bands: 'Search all docs →', 'DocMyRepos · Live · MIT →', 'openspec-hud · Coming soon'; huge gate-style labels.",
+      "case": "Fuses cleanly: the one search box and per-repo spaces are literally wayfinding. The source's yellow is translated to the brand violet; loses narrowly on clarity because bands carry little proof.",
+      "risk": "Reads as signage novelty when there is no screenshot to prove the product.",
+      "html": ".impeccable/mocks/decision/wayfinding.html",
+      "htmlFrame": "1440x900"
+    },
+    {
+      "id": "challenger-ascii",
+      "label": "Glyph-Grid Scene",
+      "verdict": "competitive",
+      "lineage": "ASCII live scene rendering",
+      "thesis": "The page is one monospace grid where the repo's docs tree renders as living glyph density.",
+      "palette": ["#12224A", "#B9A2FF", "#7B2FF7"],
+      "materials": ["single-ink glyphs", "strict monospace grid"],
+      "viewport": "A character-grid field of the docs/ tree rendered as density glyphs, with the headline and GitHub action living inside the same grid.",
+      "case": "Developers identify with it instantly; clarity suffers because the scene is decoration unless it renders real docs structure.",
+      "risk": "Terminal-monoculture: a dev tool dressed as a terminal is the predictable choice.",
+      "html": ".impeccable/mocks/decision/ascii.html",
+      "htmlFrame": "1440x900"
+    },
+    {
+      "id": "challenger-nixie",
+      "label": "Nixie Laboratory Counter",
+      "verdict": "declined",
+      "lineage": "nixie tube counters",
+      "thesis": "Counts glow inside glass tubes.",
+      "palette": ["#0B0B0D", "#FF7A1A"],
+      "materials": ["glass envelopes", "plasma glow"],
+      "viewport": "A bank of lit digits.",
+      "case": "Fuses poorly: there are no real counts to show (no stars, users or benchmarks), and orange overrides the brand.",
+      "kept": "Fixed digit positions that change in place, a discipline for any stat or status that does appear.",
+      "risk": "Forces invented numbers."
+    },
+    {
+      "id": "challenger-wildstyle",
+      "label": "Wildstyle Blackbook",
+      "verdict": "declined",
+      "lineage": "graffiti blackbook pages",
+      "thesis": "The name knitted into one interlocked mass.",
+      "palette": ["#111111", "#F2E7D0", "#E8452C"],
+      "materials": ["marker", "book paper"],
+      "viewport": "Interlocking letters.",
+      "case": "Fuses poorly: an illegible name fails product clarity, and the cream ground is off-brand.",
+      "kept": "The small fast version beside the full one: the Dash mark alone next to the full lockup.",
+      "risk": "Unreadable first viewport."
+    },
+    {
+      "id": "challenger-cloud",
+      "label": "Iridescent Cloud Edge",
+      "verdict": "declined",
+      "lineage": "cloud iridescence",
+      "thesis": "A white field with color only at the edges.",
+      "palette": ["#FFFFFF", "#475569", "#B8F0D8", "#7B2FF7"],
+      "materials": ["white ground", "spectral hairlines"],
+      "viewport": "Quiet white page with a thin colored fringe.",
+      "case": "Fuses weakly: nothing in the product maps to atmosphere optics.",
+      "kept": "Chroma confined to edges while text stays achromatic: a rule for how violet is rationed.",
+      "risk": "Pretty but says nothing about docs search."
+    },
+    {
+      "id": "challenger-cel",
+      "label": "Multiplane Cel Dawn",
+      "verdict": "declined",
+      "lineage": "multiplane animation",
+      "thesis": "Painted planes sliding at different speeds.",
+      "palette": ["#2F5D4A", "#AFC4C9"],
+      "materials": ["gouache planes"],
+      "viewport": "Forest layers.",
+      "case": "Fuses poorly: the world is a forest mood with no link to documentation.",
+      "kept": "Depth by differing scroll speeds for screenshot layers.",
+      "risk": "Picture of a world, not a website."
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "A clean open-source product page: headline, screenshot, feature grid, quickstart.",
+    "palette": ["#FFFFFF", "#12224A", "#7B2FF7"],
+    "materials": ["clean grid", "product screenshots"],
+    "viewport": "Headline and GitHub button left, DocMyRepos screenshot right, three feature cards below.",
+    "risk": "Indistinguishable from other OSS landing pages by design.",
+    "html": ".impeccable/mocks/decision/canon.html",
+    "htmlFrame": "1440x900"
+  },
+  "steer": true
+}
