@@ -1,6 +1,7 @@
 ---
 import '@fontsource-variable/geist';
 import '@fontsource-variable/geist-mono';
+import '@fontsource-variable/bricolage-grotesque';
 import '../styles/global.css';
 import Mark from '../components/Mark.astro';
 
@@ -24,8 +25,10 @@ const repo = `${org}/doc-my-repos`;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script is:inline>
       try {
+        var r = document.documentElement;
         var t = localStorage.getItem('dash-theme');
-        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        r.dataset.theme = t;
       } catch (e) {}
     </script>
   </head>
