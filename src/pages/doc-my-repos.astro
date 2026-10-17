@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import Character from '../components/Character.astro';
 
 const org = 'https://github.com/Dash-AI-Tools';
 const repo = `${org}/doc-my-repos`;
@@ -28,31 +27,31 @@ const spec = [
   description="DocMyRepos searches and showcases the Markdown documentation of every repository in your GitHub organization. Open source, MIT, self-hosted."
   current="doc"
 >
-      <section class="section page-top">
+      <section class="page-top">
         <div class="wrap">
-          <div class="plate tone-lilac hud-plate">
-            <Character kind="lead" class="hud-char" />
-            <div class="hud-copy">
-              <span class="quote">"DOCS SEARCH"</span>
-              <span class="name">DocMyRepos</span>
-              <h1>Every repo&#8217;s docs, one search box.</h1>
-              <p>DocMyRepos syncs the <code>docs/</code> folder of each repository you choose from your GitHub organization, gives every repo its own space, and gives the whole org one search box. It works with plain Markdown and has first-class support for Open Knowledge Format (OKF).</p>
-              <ul class="proof" aria-label="At a glance"><li>Live</li><li>MIT</li><li>TypeScript</li><li>Self-hosted</li></ul>
-              <p class="hud-cta">
-                <a class="btn" href={repo} rel="noopener">View on GitHub
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg>
-                </a>
-                <a class="btn ghost" href="#quickstart">Quickstart</a>
-              </p>
-            </div>
+          <p class="crumb"><a href="/">Projects</a><span aria-hidden="true">/</span><span>DocMyRepos</span></p>
+          <div class="page-head">
+            <span class="status">Live</span>
+            <h1>Every repo&#8217;s docs, one search box.</h1>
+            <p class="lede">DocMyRepos syncs the <code>docs/</code> folder of each repository you choose from your GitHub organization, gives every repo its own space, and gives the whole org one search box. It works with plain Markdown and has first-class support for Open Knowledge Format (OKF).</p>
+            <p class="hud-cta">
+              <a class="btn" href={repo} rel="noopener">View on GitHub <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></a>
+              <a class="btn ghost" href="#quickstart">Quickstart</a>
+            </p>
           </div>
+          <dl class="meta" aria-label="At a glance">
+            <div><dt>License</dt><dd>MIT</dd></div>
+            <div><dt>Language</dt><dd>TypeScript</dd></div>
+            <div><dt>Hosting</dt><dd>Self-hosted</dd></div>
+            <div><dt>Content</dt><dd>Markdown + OKF</dd></div>
+          </dl>
         </div>
       </section>
 
       <section class="section tint" id="see-it">
         <div class="wrap">
           <div class="section-head">
-            <h2>See it working.</h2>
+            <h2>See it working</h2>
             <p>These are DocMyRepos screenshots, generated from seeded demo data. They follow your light or dark theme.</p>
           </div>
           <div class="shots">
@@ -64,10 +63,10 @@ const spec = [
             <div class="shot-stage">
               {shots.map((s, i) => (
                 <figure class="shot-panel" role="tabpanel" id={`panel-${s.id}`} aria-labelledby={`tab-${s.id}`} hidden={i !== 0}>
-                  <div class="shot-scroll" tabindex="0" role="group" aria-label={`${s.tab} screenshot, scrolls sideways on small screens`}>
+                  <div class="window"><div class="shot-scroll" tabindex="0" role="group" aria-label={`${s.tab} screenshot, scrolls sideways on small screens`}>
                     <img class="for-light" src={`/screenshots/${s.id}-light.png`} alt={s.alt} width="1280" height="800" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
                     <img class="for-dark" src={`/screenshots/${s.id}-dark.png`} alt={s.alt} width="1280" height="800" loading="lazy" decoding="async" />
-                  </div>
+                  </div></div>
                   <figcaption>{s.cap} <a href={`/screenshots/${s.id}-light.png`} target="_blank" rel="noopener">Open full size</a></figcaption>
                 </figure>
               ))}
@@ -78,7 +77,7 @@ const spec = [
 
       <section class="section" id="what">
         <div class="wrap">
-          <div class="section-head"><h2>What it does, in plain words.</h2></div>
+          <div class="section-head"><h2>What it does</h2></div>
           <ul class="spec">
             {spec.map(([h, p]) => (
               <li><h3>{h}</h3><p>{p}</p></li>
@@ -89,7 +88,7 @@ const spec = [
 
       <section class="section tint" id="quickstart">
         <div class="wrap">
-          <div class="section-head"><h2>Run it yourself.</h2></div>
+          <div class="section-head"><h2>Run it yourself</h2></div>
           <div class="quick">
             <div class="notes">
               <p><strong>Self-hostable.</strong> One Next.js app plus Postgres, with a Docker image and a Compose file. MIT licensed.</p>
@@ -113,11 +112,8 @@ docker compose up -d --build --wait
   <Fragment slot="close">
     <div class="close">
       <h2>Try it on your own org.</h2>
-      <Character kind="lead" />
       <p class="hud-cta">
-        <a class="btn" href={repo} rel="noopener">View on GitHub
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg>
-        </a>
+        <a class="btn" href={repo} rel="noopener">View on GitHub <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></a>
         <a class="btn ghost" href={`${repo}/blob/main/CONTRIBUTING.md`} rel="noopener">Contributing</a>
         <a class="btn ghost" href={`${repo}/blob/main/LICENSE`} rel="noopener">MIT license</a>
       </p>

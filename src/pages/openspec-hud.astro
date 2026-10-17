@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import Character from '../components/Character.astro';
 
 const org = 'https://github.com/Dash-AI-Tools';
 const repo = `${org}/openspec-hud`;
@@ -24,31 +23,31 @@ const shows = [
   description="openspec-hud is a Claude Code mod that shows your OpenSpec flow in a side panel: flow step, tasks, running agents, MCP calls, context and usage."
   current="hud"
 >
-  <section class="section page-top">
+  <section class="page-top">
     <div class="wrap">
-      <div class="plate tone-sky hud-plate">
-        <Character kind="guest" class="hud-char" />
-        <div class="hud-copy">
-          <span class="quote">"OPENSPEC STATUS"</span>
-          <span class="name">openspec-hud</span>
-          <h1>Your OpenSpec flow, in a side panel next to the transcript.</h1>
-          <p>A Claude Code mod that shows an <a href="https://github.com/Fission-AI/OpenSpec" rel="noopener">OpenSpec</a> HUD while you work: the flow step, your tasks, running agents, MCP calls, context and usage.</p>
-          <ul class="proof" aria-label="At a glance"><li>Claude Code plugin</li><li>TypeScript</li><li>v0.3.0</li></ul>
-          <p class="hud-cta">
-            <a class="btn" href={repo} rel="noopener">View on GitHub
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg>
-            </a>
-            <a class="btn ghost" href="#install">Install</a>
-          </p>
-        </div>
+      <p class="crumb"><a href="/">Projects</a><span aria-hidden="true">/</span><span>openspec-hud</span></p>
+      <div class="page-head">
+        <span class="status">Live</span>
+        <h1>Your OpenSpec flow, in a side panel next to the transcript.</h1>
+        <p class="lede">A Claude Code mod that shows an <a href="https://github.com/Fission-AI/OpenSpec" rel="noopener">OpenSpec</a> HUD while you work: the flow step, your tasks, running agents, MCP calls, context and usage.</p>
+        <p class="hud-cta">
+          <a class="btn" href={repo} rel="noopener">View on GitHub <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></a>
+          <a class="btn ghost" href="#install">Install</a>
+        </p>
       </div>
+      <dl class="meta" aria-label="At a glance">
+        <div><dt>Version</dt><dd class="mono">v0.3.0</dd></div>
+        <div><dt>Language</dt><dd>TypeScript</dd></div>
+        <div><dt>Runs in</dt><dd>Claude Code</dd></div>
+        <div><dt>Layouts</dt><dd>Side panel, inline bar</dd></div>
+      </dl>
     </div>
   </section>
 
   <section class="section tint" id="see-it">
     <div class="wrap">
       <div class="section-head">
-        <h2>See it working.</h2>
+        <h2>See it working</h2>
         <p>Two layouts, one HUD. Sections with nothing to show, such as no tasks or no running agent, are left out.</p>
       </div>
       <div class="term-shots">
@@ -66,7 +65,7 @@ const shows = [
 
   <section class="section" id="what">
     <div class="wrap">
-      <div class="section-head"><h2>What it shows.</h2></div>
+      <div class="section-head"><h2>What it shows</h2></div>
       <ul class="spec">
         {shows.map(([h, p]) => (
           <li><h3>{h}</h3><p>{p}</p></li>
@@ -77,7 +76,7 @@ const shows = [
 
   <section class="section tint" id="install">
     <div class="wrap">
-      <div class="section-head"><h2>Install it.</h2></div>
+      <div class="section-head"><h2>Install</h2></div>
       <div class="quick">
         <div class="notes">
           <p><strong>Run it at the Claude Code prompt.</strong> Answer <code>y</code> to add the marketplace, then pick a scope: User for every session, or Project for one repository. The panel opens right away.</p>
@@ -102,27 +101,21 @@ const shows = [
 
   <section class="section" id="shape">
     <div class="wrap about">
-      <Character kind="egg" class="about-char" />
-      <div class="section-head">
-        <h2>Help shape it.</h2>
+      <div class="section-head" style="margin:0"><h2>Help shape it</h2></div>
+      <div class="about-copy">
         <p>If you use OpenSpec with Claude Code, tell us what else you would want to see at a glance. It decides what gets built next.</p>
+        <p class="hud-cta">
+          <a class="btn violet" href="/#next">Tell us what you need <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></a>
+          <a class="btn ghost" href={repo} rel="noopener">Open the repo</a>
+        </p>
       </div>
-      <p class="hud-cta">
-        <a class="btn violet" href="/#next">Tell us what you need
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg>
-        </a>
-        <a class="btn ghost" href={repo} rel="noopener">Open the repo</a>
-      </p>
     </div>
   </section>
 
   <Fragment slot="close">
     <div class="close">
       <h2>Also from Dash AI: DocMyRepos.</h2>
-      <Character kind="lead" />
-      <a class="btn" href="/doc-my-repos/">See DocMyRepos
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg>
-      </a>
+      <p class="hud-cta"><a class="btn" href="/doc-my-repos/">See DocMyRepos <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></a></p>
     </div>
   </Fragment>
 </Base>

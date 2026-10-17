@@ -1,6 +1,6 @@
 ---
-import '@fontsource-variable/fredoka';
-import '@fontsource-variable/figtree';
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
 import '../styles/global.css';
 import Mark from '../components/Mark.astro';
 
@@ -20,7 +20,7 @@ const repo = `${org}/doc-my-repos`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#12224a" />
+    <meta name="theme-color" content="#fbfbfd" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script is:inline>
       try {
@@ -75,8 +75,23 @@ const repo = `${org}/doc-my-repos`;
         const dark = matchMedia('(prefers-color-scheme: dark)').matches;
         const cur = root.dataset.theme ?? (dark ? 'dark' : 'light');
         const next = cur === 'dark' ? 'light' : 'dark';
-        root.dataset.theme = next;
+        const apply = () => { root.dataset.theme = next; };
+        const vt = (document as any).startViewTransition;
+        if (vt && !matchMedia('(prefers-reduced-motion: reduce)').matches) vt.call(document, apply);
+        else apply();
         try { localStorage.setItem('dash-theme', next); } catch {}
+      });
+
+      const copyBtn = document.getElementById('copy');
+      copyBtn?.addEventListener('click', async () => {
+        const text = document.getElementById('snippet')?.textContent ?? '';
+        try {
+          await navigator.clipboard.writeText(text);
+          copyBtn.textContent = 'Copied';
+        } catch {
+          copyBtn.textContent = 'Press Ctrl/Cmd+C';
+        }
+        setTimeout(() => (copyBtn.textContent = 'Copy'), 1800);
       });
 
     </script>
