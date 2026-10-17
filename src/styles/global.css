@@ -325,18 +325,19 @@ figcaption { margin-top: 14px; font-size: 0.92rem; color: var(--ink-soft); max-w
 
 /* Closing band */
 .close {
+  --ink: #ffffff; --surface: #0a0a0a;
   position: relative; overflow: hidden; display: grid; gap: 24px; justify-items: start;
-  padding: clamp(36px, 6vw, 72px); border-radius: var(--r-xl); background: #0c1330; color: #f1eeff; isolation: isolate;
+  padding: clamp(36px, 6vw, 72px); border-radius: var(--r-xl); background: #0a0a0a; color: #fff; isolation: isolate;
 }
+:root[data-theme='dark'] .close { --ink: #0a0a0a; --surface: #f5f5f2; background: #f5f5f2; color: #0a0a0a; }
 .close::after {
-  content: ''; position: absolute; right: -6%; bottom: -30%; width: min(60%, 560px); aspect-ratio: 1; z-index: -1;
-  background: radial-gradient(closest-side, rgb(123 47 247 / 0.5), transparent);
+  content: ''; position: absolute; top: -10%; bottom: -10%; right: 10%; width: clamp(48px, 9vw, 120px); z-index: -1;
+  background: var(--accent); transform: skewX(-22deg);
 }
 .close h2 { max-width: 20ch; font-size: clamp(1.9rem, 3.8vw, 3rem); }
 .close .hud-cta { margin-top: 4px; }
-.close .btn { background: #fff; color: #0c1330; }
-.close .btn.ghost { background: transparent; color: #f1eeff; border-color: rgb(255 255 255 / 0.28); }
-.close .btn.ghost:hover { border-color: #fff; }
+.close .btn { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.close .btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
 
 /* Footer */
 .site-footer { padding-block: 24px 40px; }
@@ -445,10 +446,15 @@ figcaption { margin-top: 14px; font-size: 0.92rem; color: var(--ink-soft); max-w
 :root .window, :root .survey, :root .meta, :root .spec { border: 2px solid var(--ink); }
 :root .status { border-radius: 0; border-color: var(--ink); }
 :root .hero::before { background: linear-gradient(var(--rule) 1px, transparent 1px) 0 0 / 100% 56px; opacity: 0.6; }
-:root .section.tint { background: var(--ink); color: var(--ground); border-color: var(--ink); --ink-soft: color-mix(in srgb, var(--ground) 70%, transparent); --accent-ink: #b79bff; }
-:root .section.tint h2 { color: var(--ground); }
-:root .section.tint .btn.ghost { background: transparent; color: var(--ground); border-color: var(--ground); }
-:root .section.tint .meta, :root .section.tint .shot-tabs { --surface: var(--ink); }
-:root[data-theme='dark'] .section.tint { background: #f5f5f2; color: #0a0a0a; --ink-soft: #444; --ground: #0b0b0b; --accent-ink: #5a1fd6; }
-:root[data-theme='dark'] .section.tint h2 { color: #0a0a0a; }
+/* Inverted band: black on light theme, near-white on dark theme. Tokens are re-pointed so every child stays legible. */
+:root .section.tint {
+  --ink: #ffffff; --ink-soft: #c4c4c8; --ground-2: #1c1c1c; --surface: #0a0a0a; --rule: #333; --rule-strong: #ffffff; --accent-ink: #b79bff;
+  background: #0a0a0a; color: #fff; border-color: #0a0a0a;
+}
+:root[data-theme='dark'] .section.tint {
+  --ink: #0a0a0a; --ink-soft: #444; --ground-2: #e4e4e0; --surface: #f5f5f2; --rule: #cfcfca; --rule-strong: #0a0a0a; --accent-ink: #5a1fd6;
+  background: #f5f5f2; color: #0a0a0a; border-color: #f5f5f2;
+}
+:root .section.tint .btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+:root .section.tint .shot-tabs button[aria-selected='true'] { background: var(--ink); color: var(--surface); }
 
