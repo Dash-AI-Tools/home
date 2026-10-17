@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import ProjectLogo from '../components/ProjectLogo.astro';
 
 const org = 'https://github.com/Dash-AI-Tools';
 
@@ -27,14 +28,6 @@ const ideas = [
           <a class="btn ghost" href={org} rel="noopener">GitHub org</a>
         </p>
       </div>
-      <figure class="hero-shot" style="margin:0">
-        <div class="window">
-          <div class="window-bar" aria-hidden="true"><i></i><i></i><i></i><span>DocMyRepos</span></div>
-          <img class="for-light" src="/screenshots/home-light.png" alt="The DocMyRepos home page: a search box and a grid of repository cards" width="1280" height="800" fetchpriority="high" decoding="async" />
-          <img class="for-dark" src="/screenshots/home-dark.png" alt="The DocMyRepos home page: a search box and a grid of repository cards" width="1280" height="800" decoding="async" />
-        </div>
-        <figcaption>DocMyRepos running on seeded demo data.</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -47,9 +40,9 @@ const ideas = [
       <ul class="register">
         <li>
           <a class="reg-row" href="/doc-my-repos/">
-            <div class="reg-name"><span class="status">Live</span><h3>DocMyRepos</h3></div>
+            <div class="reg-name"><span class="status">Live</span><h3><ProjectLogo class="reg-logo" project="doc-my-repos" name="DocMyRepos" ext="png" w={1640} h={496} /></h3></div>
             <div class="reg-desc-col">
-              <p class="reg-desc">Search and showcase the Markdown docs of every repository in your GitHub org, in one place you host yourself.</p>
+              <p class="reg-desc">Search and showcase the Markdown docs of every repository in your GitHub org, with Ask the docs and MCP access for AI agents, in one place you host yourself.</p>
               <ul class="reg-meta"><li>MIT</li><li>TypeScript</li><li>Self-hosted</li><li>Markdown + OKF</li></ul>
             </div>
             <span class="reg-go" aria-label="See DocMyRepos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></span>
@@ -57,7 +50,7 @@ const ideas = [
         </li>
         <li>
           <a class="reg-row" href="/openspec-hud/">
-            <div class="reg-name"><span class="status">Live</span><h3>openspec-hud</h3></div>
+            <div class="reg-name"><span class="status">Live</span><h3><ProjectLogo class="reg-logo" project="openspec-hud" name="openspec-hud" ext="svg" w={396} h={64} /></h3></div>
             <div class="reg-desc-col">
               <p class="reg-desc">A Claude Code mod that shows your OpenSpec flow in a side panel: flow step, tasks, running agents, context and usage.</p>
               <ul class="reg-meta"><li>v0.3.0</li><li>TypeScript</li><li>Claude Code</li></ul>

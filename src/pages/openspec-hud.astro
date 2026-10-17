@@ -1,21 +1,25 @@
 ---
 import Base from '../layouts/Base.astro';
+import ProjectLogo from '../components/ProjectLogo.astro';
 
 const org = 'https://github.com/Dash-AI-Tools';
 const repo = `${org}/openspec-hud`;
 
 const shots = [
   { src: '/openspec-hud/vertical.png', w: 1861, h: 813, alt: 'OpenSpec HUD docked as a side panel next to the Claude Code transcript, showing the change, the flow step, the context bar and usage', cap: 'Side panel: docked next to the transcript in the fullscreen UI at 110+ columns.' },
-  { src: '/openspec-hud/horizontal.png', w: 1312, h: 612, alt: 'OpenSpec HUD as an inline bar above the Claude Code prompt', cap: 'Inline bar: above the prompt in the classic UI or a narrow terminal.' },
+  { src: '/openspec-hud/horizontal.png', w: 1312, h: 427, alt: 'OpenSpec HUD as an inline bar above the Claude Code prompt', cap: 'Inline bar: above the prompt in the classic UI or a narrow terminal.' },
+  { src: '/openspec-hud/changes.png', w: 862, h: 400, alt: 'The Changes panel listing every active OpenSpec change with a progress bar and tasks left', cap: 'Changes panel: every active change with its own progress, opened with /openspec-changes.' },
 ];
 
 const shows = [
   ['Skill and step', 'The last OpenSpec skill (openspec-*) or command (/opsx:*, /openspec-*) you used, mapped to the flow step. With none, the step is inferred from the change\u2019s files: no tasks.md is propose, open tasks is apply, all done is verify.'],
   ['Change', 'The change named in your last /opsx:<cmd> <change>, otherwise the most recently edited change under openspec/changes/, archive excluded.'],
   ['Tasks', 'The current and next unchecked items in tasks.md, with done and total counts and what remains. They refresh after edits under openspec/, at each turn end and every 10 seconds.'],
+  ['All your changes', '/openspec-changes opens a second panel that lists every active change with its progress and tasks left. The change the HUD follows comes first, marked with \u25b6.'],
   ['Agents', 'Subagents that are running right now, with their type, status and task description.'],
   ['MCP', 'The MCP server and tool being called, such as github \u00b7 get_me, shown only while the call is running.'],
-  ['Context and usage', 'A context-window bar, tokens used out of the window, the 5-hour and 7-day rate-limit windows on subscriptions, and session cost.'],
+  ['Context and usage', 'A context-window bar, tokens used out of the window, the 5-hour and 7-day rate-limit windows on subscriptions, and session cost. Context and limits go green under 60%, yellow under 85% and red above.'],
+  ['Compact layout', '8 to 10 rows, 14 at most, with no headings. Long tasks and descriptions wrap to two rows and end with an ellipsis; in a wide pane short rows share a row.'],
 ];
 ---
 <Base
@@ -28,6 +32,7 @@ const shows = [
       <p class="crumb"><a href="/">Projects</a><span aria-hidden="true">/</span><span>openspec-hud</span></p>
       <div class="page-head">
         <span class="status">Live</span>
+        <ProjectLogo class="page-logo" project="openspec-hud" name="openspec-hud" ext="svg" w={396} h={64} />
         <h1>Your OpenSpec flow, in a side panel next to the transcript.</h1>
         <p class="lede">A Claude Code mod that shows an <a href="https://github.com/Fission-AI/OpenSpec" rel="noopener">OpenSpec</a> HUD while you work: the flow step, your tasks, running agents, MCP calls, context and usage.</p>
         <p class="hud-cta">
@@ -38,6 +43,7 @@ const shows = [
       <dl class="meta" aria-label="At a glance">
         <div><dt>Version</dt><dd class="mono">v0.3.0</dd></div>
         <div><dt>Language</dt><dd>TypeScript</dd></div>
+        <div><dt>License</dt><dd>MIT</dd></div>
         <div><dt>Runs in</dt><dd>Claude Code</dd></div>
         <div><dt>Layouts</dt><dd>Side panel, inline bar</dd></div>
       </dl>
@@ -48,7 +54,7 @@ const shows = [
     <div class="wrap">
       <div class="section-head">
         <h2>See it working</h2>
-        <p>Two layouts, one HUD. Sections with nothing to show, such as no tasks or no running agent, are left out.</p>
+        <p>Two layouts, plus a panel for all your changes. Sections with nothing to show, such as no tasks or no running agent, are left out.</p>
       </div>
       <div class="term-shots">
         {shots.map((s) => (
@@ -82,18 +88,20 @@ const shows = [
           <p><strong>Run it at the Claude Code prompt.</strong> Answer <code>y</code> to add the marketplace, then pick a scope: User for every session, or Project for one repository. The panel opens right away.</p>
           <p><strong>Toggle it with <code>/openspec-hud</code>.</strong> Closing it with its close mark keeps it closed in later sessions until you open it again.</p>
           <p><strong>Docking needs the fullscreen UI.</strong> Set <code>"tui": "fullscreen"</code> in <code>~/.claude/settings.json</code> and use a terminal 110+ columns wide. Otherwise the panel opens inline above the prompt.</p>
-          <p><strong>No license file yet.</strong> The repository does not include one at the time of writing.</p>
+          <p><strong>See every change with <code>/openspec-changes</code>.</strong> It starts closed and docks as a tab next to the HUD.</p>
+          <p><strong>Open source, MIT.</strong> Issues and pull requests are welcome.</p>
         </div>
         <div class="code">
           <button class="copy" type="button" id="copy">Copy</button>
           <pre id="snippet"><code><span class="c"># at the prompt of a Claude Code session</span>
-/plugin install openspec-hud --marketplace davidcp90/mods
+/plugin install openspec-hud --marketplace Dash-AI-Tools/openspec-hud
 
 <span class="c"># then, in a repo that uses OpenSpec</span>
 /opsx:propose &lt;idea&gt;
 
-<span class="c"># show or hide the panel</span>
-/openspec-hud</code></pre>
+<span class="c"># show or hide the panel, or list every change</span>
+/openspec-hud
+/openspec-changes</code></pre>
         </div>
       </div>
     </div>
@@ -107,6 +115,7 @@ const shows = [
         <p class="hud-cta">
           <a class="btn violet" href="/#next">Tell us what you need <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></a>
           <a class="btn ghost" href={repo} rel="noopener">Open the repo</a>
+          <a class="btn ghost" href={`${repo}/blob/main/CONTRIBUTING.md`} rel="noopener">Contributing</a>
         </p>
       </div>
     </div>

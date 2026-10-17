@@ -1,0 +1,7 @@
+---
+// A project's own logo, in the variant that suits the current theme.
+interface Props { project: 'doc-my-repos' | 'openspec-hud'; name: string; ext: 'png' | 'svg'; w: number; h: number; class?: string; }
+const { project, name, ext, w, h, class: className } = Astro.props;
+---
+<img class:list={['for-light', className]} src={`/logos/${project}-light.${ext}`} alt={name} width={w} height={h} decoding="async" />
+<img class:list={['for-dark', className]} src={`/logos/${project}-dark.${ext}`} alt="" width={w} height={h} decoding="async" />
