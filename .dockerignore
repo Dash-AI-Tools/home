@@ -7,3 +7,8 @@ dist
 assets
 *.md
 !README.md
+deploy
+docs
+.env
+.env.*
+!.env.example

@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPosts } from '../../lib/ghost';
+import { formatDate } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const description = post.meta_description || post.excerpt;
+---
+<Base
+  title={`${post.meta_title || post.title} · Dash AI`}
+  description={description}
+  current="blog"
+  canonical={Astro.site ? new URL(`/blog/${post.slug}/`, Astro.site).href : undefined}
+>
+  <article class="section">
+    <div class="wrap post">
+      <p class="crumb"><a href="/blog/">&larr; All posts</a></p>
+      <header class="post-head">
+        <h1>{post.title}</h1>
+        <p class="post-byline">
+          <time datetime={post.published_at}>{formatDate(post.published_at)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{Math.max(1, post.reading_time)} min read</span>
+          {post.tags.map((t) => <span class="post-tag">{t.name}</span>)}
+        </p>
+      </header>
+      {post.feature_image && <img class="post-cover" src={post.feature_image} alt={post.feature_image_alt ?? ''} />}
+      <div class="prose" set:html={post.html} />
+    </div>
+  </article>
+</Base>

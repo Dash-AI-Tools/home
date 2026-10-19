@@ -3,7 +3,11 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
-RUN npm run build
+# Build-time only: the nginx stage below never sees these, so the image carries no Ghost config.
+ARG GHOST_URL
+ARG GHOST_CONTENT_API_KEY
+ARG SITE_URL
+RUN GHOST_URL="$GHOST_URL" GHOST_CONTENT_API_KEY="$GHOST_CONTENT_API_KEY" SITE_URL="$SITE_URL" npm run build
 
 FROM nginx:1.27-alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf

@@ -8,9 +8,10 @@ import Mark from '../components/Mark.astro';
 interface Props {
   title: string;
   description: string;
-  current?: 'home' | 'doc' | 'hud';
+  current?: 'home' | 'doc' | 'hud' | 'blog';
+  canonical?: string;
 }
-const { title, description, current = 'home' } = Astro.props;
+const { title, description, current = 'home', canonical } = Astro.props;
 const org = 'https://github.com/Dash-AI-Tools';
 const repo = `${org}/doc-my-repos`;
 ---
@@ -23,6 +24,7 @@ const repo = `${org}/doc-my-repos`;
     <meta name="description" content={description} />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b0b0b" media="(prefers-color-scheme: dark)" />
+    {canonical && <link rel="canonical" href={canonical} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script is:inline>
       try {
@@ -43,6 +45,7 @@ const repo = `${org}/doc-my-repos`;
         <nav class="nav" aria-label="Main">
           <a class="hide-s" href="/doc-my-repos/" aria-current={current === 'doc' ? 'page' : undefined}>DocMyRepos</a>
           <a class="hide-s" href="/openspec-hud/" aria-current={current === 'hud' ? 'page' : undefined}>openspec-hud</a>
+          <a class="hide-s" href="/blog/" aria-current={current === 'blog' ? 'page' : undefined}>Blog</a>
           <a class="hide-s" href="/#next">What&#8217;s next</a>
           <a href={org} rel="noopener">GitHub</a>
           <button class="theme" type="button" id="theme" aria-label="Switch theme">
@@ -66,6 +69,7 @@ const repo = `${org}/doc-my-repos`;
             <a href="/">Home</a>
             <a href="/doc-my-repos/">DocMyRepos</a>
             <a href="/openspec-hud/">openspec-hud</a>
+            <a href="/blog/">Blog</a>
             <a href={org} rel="noopener">GitHub org</a>
           </nav>
         </div>

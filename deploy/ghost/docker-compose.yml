@@ -1,0 +1,50 @@
+# Ghost + MySQL for the Dash AI blog. Deploy as a Compose service in Dokploy and
+# attach the Ghost domain to the `ghost` service (container port 2368) in the
+# Dokploy UI. Variables are listed in .env.example; none have defaults, so an
+# unset secret stops the stack instead of falling back to a weak one.
+services:
+  ghost:
+    image: ghost:5-alpine
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      url: ${GHOST_PUBLIC_URL:?set GHOST_PUBLIC_URL to the public https URL of Ghost}
+      NODE_ENV: production
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: ghost
+      database__connection__password: ${MYSQL_PASSWORD:?set MYSQL_PASSWORD}
+      database__connection__database: ghost
+    volumes:
+      - ghost-content:/var/lib/ghost/content
+    expose:
+      - "2368"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:2368/ghost/api/admin/site/ >/dev/null || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+  db:
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ghost
+      MYSQL_USER: ghost
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?set MYSQL_PASSWORD}
+    volumes:
+      - ghost-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+volumes:
+  ghost-content:
+  ghost-db:
