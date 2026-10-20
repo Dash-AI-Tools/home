@@ -110,6 +110,8 @@ code, pre, kbd, .mono { font-family: var(--mono); font-feature-settings: 'zero';
   transition: color 0.15s, background 0.15s;
 }
 .nav a:hover, .nav a[aria-current='page'] { color: var(--ink); background: var(--ground-2); }
+.nav a.nav-icon { display: grid; place-items: center; padding: 8px; }
+.nav-icon svg { width: 18px; height: 18px; }
 .theme {
   width: 38px; height: 38px; margin-left: 4px; display: grid; place-items: center;
   border: 1px solid var(--rule); border-radius: var(--r-md); background: var(--surface); color: var(--ink-soft); cursor: pointer;
@@ -345,6 +347,8 @@ figcaption { margin-top: 14px; font-size: 0.92rem; color: var(--ink-soft); max-w
 .foot-row nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 .foot-row a { color: var(--ink-soft); text-decoration: none; }
 .foot-row a:hover { color: var(--ink); text-decoration: underline; }
+.foot-row a.with-icon { display: inline-flex; align-items: center; gap: 8px; }
+.with-icon svg { width: 16px; height: 16px; }
 
 /* Entrance: one authored moment on the home hero */
 @media (prefers-reduced-motion: no-preference) {
