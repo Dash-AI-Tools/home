@@ -29,10 +29,15 @@ services:
       retries: 10
       start_period: 60s
 
-  # Ghost webhooks call http://deploy-hook/ ; it triggers the site deploy in Dokploy.
+  # Ghost webhooks call http://deploy-hook.internal/ ; it triggers the site deploy in Dokploy.
+  # Ghost rejects webhook hosts without a dot, hence the alias instead of the bare service name.
   deploy-hook:
     image: nginx:1.27-alpine
     restart: unless-stopped
+    networks:
+      default:
+        aliases:
+          - deploy-hook.internal
     environment:
       DEPLOY_HOOK_URL: ${DEPLOY_HOOK_URL:?set DEPLOY_HOOK_URL to the site Application webhook URL from Dokploy}
     volumes:

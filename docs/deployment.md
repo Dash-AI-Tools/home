@@ -55,12 +55,12 @@ Store both off the VPS. The site itself needs no backup: it is rebuilt from Git 
 
 ## 5. Rebuild the site when you publish
 
-Dokploy's deploy URL expects a GitHub push (a header and a branch), which Ghost does not send: called directly it answers `Branch Not Match` and deploys nothing. The `deploy-hook` service in the Ghost compose file bridges the two. Ghost calls it on the compose network and it forwards a push-style request to Dokploy.
+Dokploy's deploy URL expects a GitHub push (a header and a branch), which Ghost does not send: called directly it answers `Branch Not Match` and deploys nothing. The `deploy-hook` service in the Ghost compose file bridges the two. Ghost calls it on the compose network and it forwards a push-style request to Dokploy. Ghost refuses webhook hosts without a dot (`URL_MISSING_INVALID`), so the relay is reached as `deploy-hook.internal`, a network alias, not as `deploy-hook`.
 
 1. In the site Application, open **Deployments** and copy the **Webhook URL**. Treat it as a secret: anyone with it can trigger a deploy.
 2. In the Ghost compose service **Environment**, set `DEPLOY_HOOK_URL` to that URL, Save and Deploy. The stack refuses to start without it.
 3. In the site Application, turn on **Clean Cache** (General tab). Without it Docker reuses the cached build step and the site never re-reads Ghost.
-4. In Ghost Admin open the `site` integration → **Add webhook**, one per event, each with the target URL `http://deploy-hook/`:
+4. In Ghost Admin open the `site` integration → **Add webhook**, one per event, each with the target URL `http://deploy-hook.internal/`:
    - `Post published`
    - `Published post updated`
    - `Post unpublished`
