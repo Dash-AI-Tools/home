@@ -31,7 +31,7 @@ Recommended: Settings → Labs → turn on **Private site mode** so the Ghost fr
 ## 3. Deploy the site
 
 1. In Dokploy, create an **Application** from this repository. Build type: **Dockerfile** (path `Dockerfile`).
-2. Set these as **build-time** variables or arguments (the Dockerfile reads them as build `ARG`s; they are not kept in the final image):
+2. On the **Environment** tab, add these under **Build-time Arguments**, one `NAME=value` per line, then Save (the Dockerfile reads them as build `ARG`s; they are not kept in the final image; Build-time Secrets are not used):
    - `GHOST_URL`: `https://<ghost-domain>`
    - `GHOST_CONTENT_API_KEY`: the key from step 2
    - `SITE_URL`: `https://<site-domain>` (used for canonical links)
