@@ -25,7 +25,7 @@
 ## 5. Deployment guide
 
 - [x] 5.1 Write `docs/deployment.md`: create the Ghost Compose service in Dokploy with its domain and TLS, first-run Ghost setup, creating the Content API integration, creating the site Application with build args and domain, backups for both named volumes. Verify: a second reader can follow it on a clean Dokploy without questions, checked by a dry read against the compose file and Dockerfile names.
-- [ ] 5.2 Document the Ghost webhooks (`post.published`, `post.published.edited`, `post.unpublished`, `post.deleted`) pointing at the Dokploy deploy webhook, how to confirm a deployment started, and the manual redeploy fallback. Verify: publishing a test post on the deployed stack starts a Dokploy deployment and the post appears on `/blog/`.
+- [x] 5.2 Document the Ghost webhooks (`post.published`, `post.published.edited`, `post.unpublished`, `post.deleted`) pointing at the `deploy-hook` relay (Dokploy's deploy URL rejects Ghost's payload on its own), how to confirm a deployment started, and the manual redeploy fallback. Verify: publishing a test post on the deployed stack starts a Dokploy deployment and the post appears on `/blog/`. Verified on the live stack: editing the published post started a deployment and the new excerpt appeared on `/blog/`.
 
 ## 6. Wrap-up
 
