@@ -1,0 +1,15 @@
+# Relay for Ghost webhooks. Dokploy's deploy URL only accepts a GitHub-style push
+# (header and branch), and Ghost sends neither, so this adds them. The nginx image
+# fills ${DEPLOY_HOOK_URL} in from the environment at start. Reachable only on the
+# compose network: there is no public route to it.
+server {
+    listen 80;
+
+    location / {
+        proxy_method POST;
+        proxy_set_header Content-Type "application/json";
+        proxy_set_header X-GitHub-Event "push";
+        proxy_set_body '{"ref":"refs/heads/main","commits":[]}';
+        proxy_pass ${DEPLOY_HOOK_URL};
+    }
+}

@@ -29,6 +29,15 @@ services:
       retries: 10
       start_period: 60s
 
+  # Ghost webhooks call http://deploy-hook/ ; it triggers the site deploy in Dokploy.
+  deploy-hook:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    environment:
+      DEPLOY_HOOK_URL: ${DEPLOY_HOOK_URL:?set DEPLOY_HOOK_URL to the site Application webhook URL from Dokploy}
+    volumes:
+      - ./deploy-hook.conf.template:/etc/nginx/templates/default.conf.template:ro
+
   db:
     image: mysql:8
     restart: unless-stopped
