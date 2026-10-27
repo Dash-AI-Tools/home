@@ -1,2 +1,4 @@
-export const formatDate = (iso: string): string =>
-  new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+import { getT, type Lang } from '../i18n';
+
+export const formatDate = (iso: string, lang: Lang = 'en'): string =>
+  new Date(iso).toLocaleDateString(getT(lang).dateLocale, { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });

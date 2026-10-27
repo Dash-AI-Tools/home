@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import { getPosts } from '../lib/ghost';
+import { formatDate } from '../lib/format';
+import { getT, localePath, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getT(lang).blog;
+const posts = await getPosts();
+---
+<Base
+  title={t.title}
+  description={t.description}
+  current="blog"
+  lang={lang}
+  enPath="/blog/"
+  canonical={Astro.site ? new URL(localePath(lang, '/blog/'), Astro.site).href : undefined}
+>
+  <section class="page-top">
+    <div class="wrap">
+      <p class="crumb"><a href={localePath(lang, '/')}>{t.home}</a><span aria-hidden="true">/</span><span>{t.h1}</span></p>
+      <div class="page-head">
+        <h1>{t.h1}</h1>
+        <p class="lede">{t.lede}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      {posts.length === 0 ? (
+        <p class="empty">{t.empty}</p>
+      ) : (
+        <ul class="post-list">
+          {posts.map((p) => (
+            <li>
+              <a class="post-row" href={`/blog/${p.slug}/`}>
+                <div class="post-meta">
+                  <time datetime={p.published_at}>{formatDate(p.published_at, lang)}</time>
+                  {p.primary_tag && <span class="post-tag">{p.primary_tag.name}</span>}
+                </div>
+                <div>
+                  <h2>{p.title}</h2>
+                  <p>{p.excerpt}</p>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</Base>

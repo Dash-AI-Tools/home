@@ -1,0 +1,113 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectLogo from './ProjectLogo.astro';
+import { getT, localePath, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getT(lang).hud;
+const org = 'https://github.com/Dash-AI-Tools';
+const repo = `${org}/openspec-hud`;
+
+const shotFiles = [
+  { src: '/openspec-hud/vertical.png', w: 1861, h: 813 },
+  { src: '/openspec-hud/horizontal.png', w: 1312, h: 427 },
+  { src: '/openspec-hud/changes.png', w: 862, h: 400 },
+];
+const shots = shotFiles.map((f, i) => ({ ...f, ...t.shots[i] }));
+---
+<Base
+  title={t.title}
+  description={t.description}
+  current="hud"
+  lang={lang}
+  enPath="/openspec-hud/"
+>
+  <section class="page-top">
+    <div class="wrap">
+      <p class="crumb"><a href={localePath(lang, '/')}>{t.projects}</a><span aria-hidden="true">/</span><span>openspec-hud</span></p>
+      <div class="page-head">
+        <span class="status">{t.live}</span>
+        <ProjectLogo class="page-logo" project="openspec-hud" name="openspec-hud" ext="svg" w={396} h={64} />
+        <h1>{t.h1}</h1>
+        <p class="lede" set:html={t.lede} />
+        <p class="hud-cta">
+          <a class="btn" href={repo} rel="noopener">{t.viewGithub} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></a>
+          <a class="btn ghost" href="#install">{t.install}</a>
+        </p>
+      </div>
+      <dl class="meta" aria-label={t.glance}>
+        {t.metaLabels.map((label, i) => (
+          <div><dt>{label}</dt><dd class={i === 0 ? 'mono' : undefined}>{t.metaValues[i]}</dd></div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section tint" id="see-it">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>{t.seeIt}</h2>
+        <p>{t.seeItSub}</p>
+      </div>
+      <div class="term-shots">
+        {shots.map((s) => (
+          <figure class="term-shot">
+            <div class="shot-scroll" tabindex="0" role="group" aria-label={t.shotScroll}>
+              <img src={s.src} alt={s.alt} width={s.w} height={s.h} decoding="async" />
+            </div>
+            <figcaption>{s.cap} <a href={s.src} target="_blank" rel="noopener">{t.fullSize}</a></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="what">
+    <div class="wrap">
+      <div class="section-head"><h2>{t.whatTitle}</h2></div>
+      <ul class="spec">
+        {t.shows.map(([h, p]) => (
+          <li><h3>{h}</h3><p>{p}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section tint" id="install">
+    <div class="wrap">
+      <div class="section-head"><h2>{t.installTitle}</h2></div>
+      <div class="quick">
+        <div class="notes">
+          {t.notes.map((n) => <p set:html={n} />)}
+        </div>
+        <div class="code">
+          <button class="copy" type="button" id="copy" data-label={getT(lang).layout.copy} data-copied={getT(lang).layout.copied} data-fallback={getT(lang).layout.copyFallback}>{getT(lang).layout.copy}</button>
+          <pre id="snippet"><code><span class="c">{t.cPrompt}</span>
+/plugin install openspec-hud --marketplace Dash-AI-Tools/openspec-hud
+
+<span class="c">{t.cRepo}</span>
+/opsx:propose &lt;idea&gt;
+
+<span class="c">{t.cToggle}</span>
+/openspec-hud
+/openspec-changes</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="shape">
+    <div class="wrap about">
+      <div class="section-head" style="margin:0"><h2>{t.shapeTitle}</h2></div>
+      <div class="about-copy">
+        <p>{t.shape}</p>
+        <p class="hud-cta">
+          <a class="btn violet" href={localePath(lang, '/#next')}>{t.tellUs} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></a>
+          <a class="btn ghost" href={repo} rel="noopener">{t.openRepo}</a>
+          <a class="btn ghost" href={`${repo}/blob/main/CONTRIBUTING.md`} rel="noopener">{t.contributing}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

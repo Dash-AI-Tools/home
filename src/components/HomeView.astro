@@ -1,0 +1,133 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectLogo from './ProjectLogo.astro';
+import { getT, localePath, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getT(lang).home;
+const org = 'https://github.com/Dash-AI-Tools';
+const href = (p: string) => localePath(lang, p);
+---
+<Base
+  title={t.title}
+  description={t.description}
+  current="home"
+  lang={lang}
+  enPath="/"
+>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1 set:html={t.heroTitle} />
+        <p class="sub">{t.heroSub}</p>
+        <p class="hero-cta">
+          <a class="btn" href="#projects">{t.browse} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4v11.2l-4.6-4.6L5 12l7 7 7-7-1.4-1.4-4.6 4.6V4h-2Z"/></svg></a>
+          <a class="btn ghost" href={org} rel="noopener">{t.githubOrg}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>{t.projects}</h2>
+        <p>{t.projectsSub}</p>
+      </div>
+      <ul class="register">
+        <li>
+          <a class="reg-row" href={href('/openspec-hud/')}>
+            <div class="reg-name"><span class="status">{t.live}</span><h3><ProjectLogo class="reg-logo reg-logo-sm" project="openspec-hud" name="openspec-hud" ext="svg" w={396} h={64} /></h3></div>
+            <div class="reg-desc-col">
+              <p class="reg-desc">{t.hudDesc}</p>
+              <ul class="reg-meta">{t.hudMeta.map((m) => <li>{m}</li>)}</ul>
+            </div>
+            <span class="reg-go" aria-label={t.seeHud}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a class="reg-row next" href="#next">
+            <div class="reg-name"><span class="status open">{t.openSlot}</span><h3>{t.yourIdea}</h3></div>
+            <div class="reg-desc-col">
+              <p class="reg-desc">{t.pickingNext}</p>
+            </div>
+            <span class="reg-go" aria-label={t.suggest}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4v11.2l-4.6-4.6L5 12l7 7 7-7-1.4-1.4-4.6 4.6V4h-2Z"/></svg></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section tint" id="about">
+    <div class="wrap about">
+      <div class="section-head" style="margin:0">
+        <h2 set:html={t.aboutTitle} />
+      </div>
+      <div class="about-copy">
+        <p>{t.about1}</p>
+        <p>{t.about2}</p>
+        <a class="btn ghost" href={org} rel="noopener">{t.seeOrg} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="next">
+    <div class="wrap survey-wrap">
+      <div class="section-head">
+        <h2>{t.nextTitle}</h2>
+        <p>{t.nextSub}</p>
+      </div>
+      <form class="survey" id="survey" data-i18n={JSON.stringify({ ...t.survey, sendLabel: t.send })} novalidate>
+        <fieldset>
+          <legend class="sr">{t.legend}</legend>
+          <div class="chips">
+            {t.ideas.map((t) => (
+              <label class="chip"><input type="checkbox" name="idea" value={t} /><span>{t}</span></label>
+            ))}
+          </div>
+        </fieldset>
+        <label class="field">
+          <span>{t.otherLabel}</span>
+          <textarea name="other" rows="4" maxlength="800" placeholder={t.placeholder}></textarea>
+        </label>
+        <div class="survey-row">
+          <button class="btn violet" type="submit" id="survey-send">{t.send}</button>
+          <p class="survey-note" id="survey-note" role="status" aria-live="polite">{t.note}</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <Fragment slot="close">
+    <div class="close">
+      <h2 set:html={t.closeTitle} />
+      <p class="hud-cta"><a class="btn" href={org} rel="noopener">{t.closeCta} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></a></p>
+    </div>
+  </Fragment>
+</Base>
+
+<script>
+  const form = document.getElementById('survey') as HTMLFormElement | null;
+  const send = document.getElementById('survey-send');
+  const note = document.getElementById('survey-note');
+  if (form && send && note) {
+    const s = JSON.parse(form.dataset.i18n!);
+    const picked = () => [...form.querySelectorAll<HTMLInputElement>('input[name=idea]:checked')].map((i) => i.value);
+    form.addEventListener('change', () => {
+      const n = picked().length;
+      send.textContent = n === 0 ? s.sendLabel : n === 1 ? s.sendOne : s.sendMany.replace('{n}', String(n));
+    });
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const picks = picked();
+      const other = (form.elements.namedItem('other') as HTMLTextAreaElement).value.trim();
+      if (!picks.length && !other) { note.textContent = s.empty; return; }
+      const body = `${s.areas}:\n${picks.map((p) => '- ' + p).join('\n') || '- ' + s.nonePicked}\n\n${s.idea}:\n${other || s.none}`;
+      const url = 'https://github.com/Dash-AI-Tools/home/issues/new?title=' + encodeURIComponent(s.issueTitle) + '&body=' + encodeURIComponent(body);
+      open(url, '_blank', 'noopener');
+      note.textContent = s.opened;
+      form.classList.remove('sent'); void form.offsetWidth; form.classList.add('sent');
+    });
+  }
+</script>

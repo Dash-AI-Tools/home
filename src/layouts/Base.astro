@@ -4,22 +4,28 @@ import '@fontsource-variable/geist-mono';
 import '@fontsource-variable/bricolage-grotesque';
 import '../styles/global.css';
 import Mark from '../components/Mark.astro';
+import { getT, localePath, type Lang } from '../i18n';
 
 interface Props {
   title: string;
   description: string;
   current?: 'home' | 'doc' | 'hud' | 'blog';
   canonical?: string;
+  lang?: Lang;
+  /** English path of this page when it has a Spanish twin; enables the language switcher and hreflang. */
+  enPath?: string;
 }
-const { title, description, current = 'home', canonical } = Astro.props;
+const { title, description, current = 'home', canonical, lang = 'en', enPath } = Astro.props;
+const t = getT(lang).layout;
+const other: Lang = lang === 'en' ? 'es' : 'en';
+const abs = (l: Lang) => new URL(localePath(l, enPath!), Astro.site).href;
 const org = 'https://github.com/Dash-AI-Tools';
-const repo = `${org}/doc-my-repos`;
 const linkedin = 'https://www.linkedin.com/company/dashai-work/';
 const inPath = 'M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z';
 const ogImage = new URL('/og.png', Astro.site).href;
 ---
 <!doctype html>
-<html lang="en">
+<html lang={getT(lang).htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,8 +34,16 @@ const ogImage = new URL('/og.png', Astro.site).href;
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b0b0b" media="(prefers-color-scheme: dark)" />
     {canonical && <link rel="canonical" href={canonical} />}
+    {enPath && Astro.site && (
+      <>
+        <link rel="alternate" hreflang="en" href={abs('en')} />
+        <link rel="alternate" hreflang="es" href={abs('es')} />
+        <link rel="alternate" hreflang="x-default" href={abs('en')} />
+      </>
+    )}
     <meta property="og:site_name" content="Dash AI" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content={getT(lang).ogLocale} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
@@ -47,22 +61,22 @@ const ogImage = new URL('/og.png', Astro.site).href;
     </script>
   </head>
   <body>
-    <a class="skip" href="#main">Skip to content</a>
+    <a class="skip" href="#main">{t.skip}</a>
     <header class="site-header">
       <div class="wrap">
-        <a class="brand" href="/" aria-label="Dash AI home">
+        <a class="brand" href={localePath(lang, '/')} aria-label={t.homeLabel}>
           <Mark class="mark" /><span><b>Dash</b> <span>AI</span></span>
         </a>
-        <nav class="nav" aria-label="Main">
-          <a class="hide-s" href="/doc-my-repos/" aria-current={current === 'doc' ? 'page' : undefined}>DocMyRepos</a>
-          <a class="hide-s" href="/openspec-hud/" aria-current={current === 'hud' ? 'page' : undefined}>openspec-hud</a>
-          <a class="hide-s" href="/blog/" aria-current={current === 'blog' ? 'page' : undefined}>Blog</a>
-          <a class="hide-s" href="/#next">What&#8217;s next</a>
-          <a href={org} rel="noopener">GitHub</a>
-          <a class="nav-icon" href={linkedin} rel="noopener" aria-label="Dash AI on LinkedIn">
+        <nav class="nav" aria-label={t.mainNav}>
+          <a class="hide-s" href={localePath(lang, '/openspec-hud/')} aria-current={current === 'hud' ? 'page' : undefined}>openspec-hud</a>
+          <a class="hide-s" href={localePath(lang, '/blog/')} aria-current={current === 'blog' ? 'page' : undefined}>{t.blog}</a>
+          <a class="hide-s" href={localePath(lang, '/#next')} set:html={t.next} />
+          <a href={org} rel="noopener">{t.github}</a>
+          {enPath && <a class="lang-switch" href={localePath(other, enPath)} hreflang={t.switchLang} lang={t.switchLang} aria-label={t.switchLabel}>{t.switchShort}</a>}
+          <a class="nav-icon" href={linkedin} rel="noopener" aria-label={t.linkedinLabel}>
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={inPath} /></svg>
           </a>
-          <button class="theme" type="button" id="theme" aria-label="Switch theme">
+          <button class="theme" type="button" id="theme" aria-label={t.themeLabel}>
             <svg class="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a.8.8 0 0 0-1-1A10 10 0 1 0 21.5 15.2a.8.8 0 0 0-1-1Z"/></svg>
             <svg class="sun" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5a1 1 0 0 1 1 1V4a1 1 0 1 1-2 0V2.5a1 1 0 0 1 1-1Zm0 18.5a1 1 0 0 1 1 1v1.5a1 1 0 1 1-2 0V21a1 1 0 0 1 1-1ZM1.5 12a1 1 0 0 1 1-1H4a1 1 0 1 1 0 2H2.5a1 1 0 0 1-1-1Zm18.5 0a1 1 0 0 1 1-1h1.5a1 1 0 1 1 0 2H21a1 1 0 0 1-1-1ZM4.6 4.6a1 1 0 0 1 1.4 0l1 1A1 1 0 0 1 5.6 7l-1-1a1 1 0 0 1 0-1.4Zm12.4 12.4a1 1 0 0 1 1.4 0l1 1a1 1 0 0 1-1.4 1.4l-1-1a1 1 0 0 1 0-1.4ZM19.4 4.6a1 1 0 0 1 0 1.4l-1 1A1 1 0 0 1 17 5.6l1-1a1 1 0 0 1 1.4 0ZM7 17a1 1 0 0 1 0 1.4l-1 1A1 1 0 0 1 4.6 18l1-1A1 1 0 0 1 7 17Z"/></svg>
           </button>
@@ -78,13 +92,12 @@ const ogImage = new URL('/og.png', Astro.site).href;
       <div class="wrap">
         <slot name="close" />
         <div class="foot-row">
-          <span>© 2026 Dash AI. Open-source tools.</span>
-          <nav aria-label="Footer">
-            <a href="/">Home</a>
-            <a href="/doc-my-repos/">DocMyRepos</a>
-            <a href="/openspec-hud/">openspec-hud</a>
-            <a href="/blog/">Blog</a>
-            <a href={org} rel="noopener">GitHub org</a>
+          <span>{t.copyright}</span>
+          <nav aria-label={t.footerNav}>
+            <a href={localePath(lang, '/')}>{t.home}</a>
+            <a href={localePath(lang, '/openspec-hud/')}>openspec-hud</a>
+            <a href={localePath(lang, '/blog/')}>{t.blog}</a>
+            <a href={org} rel="noopener">{t.githubOrg}</a>
             <a class="with-icon" href={linkedin} rel="noopener">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={inPath} /></svg>LinkedIn
             </a>
@@ -112,11 +125,11 @@ const ogImage = new URL('/og.png', Astro.site).href;
         const text = document.getElementById('snippet')?.textContent ?? '';
         try {
           await navigator.clipboard.writeText(text);
-          copyBtn.textContent = 'Copied';
+          copyBtn.textContent = copyBtn.dataset.copied!;
         } catch {
-          copyBtn.textContent = 'Press Ctrl/Cmd+C';
+          copyBtn.textContent = copyBtn.dataset.fallback!;
         }
-        setTimeout(() => (copyBtn.textContent = 'Copy'), 1800);
+        setTimeout(() => (copyBtn.textContent = copyBtn.dataset.label!), 1800);
       });
 
     </script>
