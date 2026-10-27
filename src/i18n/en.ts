@@ -51,6 +51,18 @@ export const en = {
     about1: 'Dash AI builds small, focused tools for developers who work with AI. Each one does one job, is open source, and lives in the open on GitHub, so you can read it, run it and change it.',
     about2: 'The next tool comes from what people actually need. That is what the question below is for.',
     seeOrg: 'See the Dash-AI-Tools org',
+    services: {
+      title: 'Leadership and AI adoption, <span class="ai">practically explained and developed.</span>',
+      sub: 'We work with a small number of leaders and teams at a time. Pick the format that fits and book a free 15-minute intro call.',
+      cta: 'Book a call',
+      cards: [
+        { tag: 'Recurring 1:1 sessions', title: '1:1 mentorship for new engineering leaders', desc: 'For senior engineers stepping into tech lead or EM roles: team development, stakeholder management, and making decisions under ambiguity \u2014 balancing business results with engineering excellence.' },
+        { tag: 'Team workshops', title: 'AI transformation workshops', desc: 'Hands-on workshops for engineers and managers: GenAI, RAG, agents and agent security, plus AI across the SDLC \u2014 IDE assistants, spec-driven development, AI-assisted code review.' },
+        { tag: 'Advisory engagements', title: 'Consultations', desc: 'Where does AI create leverage in your delivery, and how do you roll it out without disrupting it? Engineering velocity, DORA metrics, reliability and team scaling reviews.' },
+      ],
+      unsure: 'Not sure which one fits? Start with a conversation.',
+      all: 'See all call options',
+    },
     nextTitle: 'What should we build next?',
     nextSub: 'Pick any that would help you, or describe your own. Sending needs a free GitHub account.',
     legend: 'Areas I would use a new tool in',

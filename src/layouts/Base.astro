@@ -88,9 +88,9 @@ const ogImage = new URL('/og.png', Astro.site).href;
       <slot />
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer tint">
+      <slot name="close" />
       <div class="wrap">
-        <slot name="close" />
         <div class="foot-row">
           <span>{t.copyright}</span>
           <nav aria-label={t.footerNav}>

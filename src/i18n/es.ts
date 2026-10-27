@@ -53,6 +53,18 @@ export const es = {
     about1: 'Dash AI crea herramientas pequeñas y enfocadas para desarrolladores que trabajan con IA. Cada una hace una sola cosa, es de código abierto y vive a la vista en GitHub, para que puedas leerla, ejecutarla y modificarla.',
     about2: 'La próxima herramienta nace de lo que la gente realmente necesita. Para eso es la pregunta de abajo.',
     seeOrg: 'Ver la org Dash-AI-Tools',
+    services: {
+      title: 'Liderazgo y adopción de IA, <span class="ai">explicados y desarrollados con práctica.</span>',
+      sub: 'Trabajamos con un número reducido de líderes y equipos a la vez. Elige el formato que encaja y reserva una llamada introductoria gratuita de 15 minutos.',
+      cta: 'Reservar una llamada',
+      cards: [
+        { tag: 'Sesiones 1:1 recurrentes', title: 'Mentoría 1:1 para nuevos líderes de ingeniería', desc: 'Para ingenieros senior que dan el paso a tech lead o EM: desarrollo de equipo, gestión de stakeholders y toma de decisiones en la ambigüedad \u2014 equilibrando resultados de negocio con excelencia de ingeniería.' },
+        { tag: 'Talleres para equipos', title: 'Talleres de transformación con IA', desc: 'Talleres prácticos para ingenieros y managers: GenAI, RAG, agentes y seguridad de agentes, más IA a lo largo del SDLC \u2014 asistentes en el IDE, desarrollo guiado por specs, revisión de código asistida por IA.' },
+        { tag: 'Asesoría', title: 'Consultorías', desc: '¿Dónde crea la IA ventaja en tu entrega y cómo la despliegas sin interrumpirla? Revisiones de velocidad de ingeniería, métricas DORA, fiabilidad y escalado de equipos.' },
+      ],
+      unsure: '¿No sabes cuál encaja? Empieza con una conversación.',
+      all: 'Ver todas las opciones de llamada',
+    },
     nextTitle: '¿Qué deberíamos construir después?',
     nextSub: 'Elige las que te ayudarían o describe la tuya. Para enviarla necesitas una cuenta gratuita de GitHub.',
     legend: 'Áreas en las que usaría una nueva herramienta',

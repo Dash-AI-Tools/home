@@ -8,6 +8,8 @@ const { lang } = Astro.props;
 const t = getT(lang).home;
 const org = 'https://github.com/Dash-AI-Tools';
 const href = (p: string) => localePath(lang, p);
+const cal = 'https://cal.com/dash-ai';
+const offerLinks = [`${cal}/mentorship`, `${cal}/ai-workshop`, `${cal}/consultation`];
 ---
 <Base
   title={t.title}
@@ -16,7 +18,7 @@ const href = (p: string) => localePath(lang, p);
   lang={lang}
   enPath="/"
 >
-  <section class="hero">
+  <section class="hero tint">
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <h1 set:html={t.heroTitle} />
@@ -59,7 +61,29 @@ const href = (p: string) => localePath(lang, p);
     </div>
   </section>
 
-  <section class="section tint" id="about">
+  <section class="section tint" id="work-with-us">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 set:html={t.services.title} />
+        <p>{t.services.sub}</p>
+      </div>
+      <ul class="offers">
+        {t.services.cards.map((c, i) => (
+          <li class="offer">
+            <div class="offer-name"><span class="status plain">{c.tag}</span><h3>{c.title}</h3></div>
+            <p class="offer-desc">{c.desc}</p>
+            <a class="btn ghost" href={offerLinks[i]} rel="noopener" target="_blank" aria-label={`${t.services.cta}: ${c.title}`}>{t.services.cta} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></a>
+          </li>
+        ))}
+      </ul>
+      <div class="offers-foot">
+        <p>{t.services.unsure}</p>
+        <a class="btn" href={cal} rel="noopener" target="_blank">{t.services.all} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
     <div class="wrap about">
       <div class="section-head" style="margin:0">
         <h2 set:html={t.aboutTitle} />
@@ -72,7 +96,7 @@ const href = (p: string) => localePath(lang, p);
     </div>
   </section>
 
-  <section class="section" id="next">
+  <section class="section tint" id="next">
     <div class="wrap survey-wrap">
       <div class="section-head">
         <h2>{t.nextTitle}</h2>
