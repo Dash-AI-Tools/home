@@ -346,7 +346,7 @@ figcaption { margin-top: 14px; font-size: 0.92rem; color: var(--ink-soft); max-w
   position: relative; display: grid; gap: 24px; justify-items: start;
   padding-block: clamp(64px, 10vw, 128px); padding-inline: calc((100% - min(100% - 48px, 1180px)) / 2); background: #0a0a0a; color: #fff; isolation: isolate;
 }
-:root[data-theme='dark'] .close { --ink: #0a0a0a; --surface: #f5f5f2; background: #f5f5f2; color: #0a0a0a; }
+:root[data-theme='dark'] .close { --ink: #f5f5f2; --surface: #141414; background: #141414; color: #f5f5f2; }
 .close::after {
   content: ''; position: absolute; top: -8%; bottom: 0; right: 12%; width: clamp(64px, 12vw, 200px); z-index: -1;
   background: var(--accent); transform: skewX(-22deg);
@@ -463,19 +463,36 @@ figcaption { margin-top: 14px; font-size: 0.92rem; color: var(--ink-soft); max-w
 :root .reg-go { border-radius: 0; border-color: var(--ink); }
 :root .window, :root .survey, :root .meta, :root .spec { border: 2px solid var(--ink); }
 :root .status { border-radius: 0; border-color: var(--ink); }
-:root .hero::before { background: linear-gradient(var(--rule) 1px, transparent 1px) 0 0 / 100% 56px; opacity: 0.6; }
-/* Inverted band: black on light theme, near-white on dark theme. Tokens are re-pointed so every child stays legible. */
+/* Texture (hero and .textured bands): dot grid and a violet glow, fading out behind the copy. The hero adds two brand slashes. */
+.hero, .textured { isolation: isolate; }
+.textured { position: relative; }
+.textured::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+:root .hero::before, :root .textured::before {
+  inset: 0; height: auto; opacity: 1;
+  background:
+    radial-gradient(46% 90% at 88% 18%, color-mix(in srgb, var(--accent) 30%, transparent), transparent 72%),
+    radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--ink) 26%, transparent) 1px, transparent 1.6px) 0 0 / 26px 26px;
+  -webkit-mask-image: linear-gradient(100deg, rgb(0 0 0 / 0.12) 8%, #000 62%);
+  mask-image: linear-gradient(100deg, rgb(0 0 0 / 0.12) 8%, #000 62%);
+}
+:root .hero::after {
+  content: ''; position: absolute; z-index: -1; top: -10%; bottom: -10%; right: 9%; width: clamp(56px, 9vw, 150px);
+  background: var(--accent); opacity: 0.9; transform: skewX(-22deg);
+  box-shadow: clamp(110px, 17vw, 270px) 0 0 -6px color-mix(in srgb, var(--accent) 38%, transparent);
+}
+@media (max-width: 720px) { :root .hero::after { opacity: 0.35; right: -4%; } }
+/* Band: black on the light theme, a step lighter than the page on the dark theme. Tokens are re-pointed so every child stays legible. */
 :root .tint {
   --ink: #ffffff; --ink-soft: #c4c4c8; --ground-2: #1c1c1c; --surface: #0a0a0a; --rule: #333; --rule-strong: #ffffff; --accent-ink: #b79bff;
   background: #0a0a0a; color: #fff; border-color: #0a0a0a;
 }
 :root[data-theme='dark'] .tint {
-  --ink: #0a0a0a; --ink-soft: #444; --ground-2: #e4e4e0; --surface: #f5f5f2; --rule: #cfcfca; --rule-strong: #0a0a0a; --accent-ink: #5a1fd6;
-  background: #f5f5f2; color: #0a0a0a; border-color: #f5f5f2;
+  --ink: #f5f5f2; --ink-soft: #a5a5a0; --ground-2: #1c1c1c; --surface: #0b0b0b; --rule: #2a2a2a; --rule-strong: #f5f5f2; --accent-ink: #b79bff;
+  background: #141414; color: #f5f5f2; border-color: #141414;
 }
-/* Logos pick the variant that contrasts with the inverted band, not with the page theme. */
-:root[data-theme='light'] .tint .for-light, :root[data-theme='dark'] .tint .for-dark { display: none; }
-:root[data-theme='light'] .tint .for-dark, :root[data-theme='dark'] .tint .for-light { display: block; }
+/* In the light theme the band is black, so logos swap to the variant that contrasts with it. */
+:root[data-theme='light'] .tint .for-light { display: none; }
+:root[data-theme='light'] .tint .for-dark { display: block; }
 :root .tint .btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
 :root .tint .shot-tabs button[aria-selected='true'] { background: var(--ink); color: var(--surface); }
 
