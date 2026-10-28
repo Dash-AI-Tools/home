@@ -72,7 +72,7 @@ export const es = {
     placeholder: 'Una herramienta que…',
     send: 'Enviar tu idea',
     note: 'Esto abre un issue de GitHub ya rellenado que puedes enviar.',
-    closeTitle: 'Lee el código. Ejecútalo. Cuéntanos qué sigue.',
+    closeTitle: 'Lee el código. Ejecútalo.<br>Cuéntanos qué sigue.',
     closeCta: 'Ver la org en GitHub',
     survey: {
       empty: 'Elige al menos un área o escribe una idea primero.',

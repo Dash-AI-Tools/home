@@ -70,7 +70,7 @@ export const en = {
     placeholder: 'A tool that…',
     send: 'Send your idea',
     note: 'This opens a prefilled GitHub issue you can submit.',
-    closeTitle: 'Read the code. Run it. Tell us what&#8217;s next.',
+    closeTitle: 'Read the code. Run it.<br>Tell us what&#8217;s next.',
     closeCta: 'See the org on GitHub',
     survey: {
       empty: 'Pick at least one area or write an idea first.',
