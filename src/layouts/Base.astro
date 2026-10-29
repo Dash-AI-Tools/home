@@ -69,6 +69,7 @@ const ogImage = new URL('/og.png', Astro.site).href;
         </a>
         <nav class="nav" aria-label={t.mainNav}>
           <a class="hide-s" href={localePath(lang, '/openspec-hud/')} aria-current={current === 'hud' ? 'page' : undefined}>openspec-hud</a>
+          <a class="hide-s" href="/doc-my-repos/" aria-current={current === 'doc' ? 'page' : undefined}>DocMyRepos</a>
           <a class="hide-s" href={localePath(lang, '/blog/')} aria-current={current === 'blog' ? 'page' : undefined}>{t.blog}</a>
           <a class="hide-s" href={localePath(lang, '/#next')} set:html={t.next} />
           <a href={org} rel="noopener">{t.github}</a>
@@ -96,6 +97,7 @@ const ogImage = new URL('/og.png', Astro.site).href;
           <nav aria-label={t.footerNav}>
             <a href={localePath(lang, '/')}>{t.home}</a>
             <a href={localePath(lang, '/openspec-hud/')}>openspec-hud</a>
+            <a href="/doc-my-repos/">DocMyRepos</a>
             <a href={localePath(lang, '/blog/')}>{t.blog}</a>
             <a href={org} rel="noopener">{t.githubOrg}</a>
             <a class="with-icon" href={linkedin} rel="noopener">

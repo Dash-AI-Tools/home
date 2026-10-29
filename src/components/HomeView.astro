@@ -49,6 +49,16 @@ const offerLinks = [`${cal}/mentorship`, `${cal}/ai-workshop`, `${cal}/consultat
           </a>
         </li>
         <li>
+          <a class="reg-row" href="/doc-my-repos/">
+            <div class="reg-name"><span class="status">{t.live}</span><h3><ProjectLogo class="reg-logo reg-logo-sm" project="doc-my-repos" name="DocMyRepos" ext="png" w={1640} h={496} /></h3></div>
+            <div class="reg-desc-col">
+              <p class="reg-desc">{t.docDesc}</p>
+              <ul class="reg-meta">{t.docMeta.map((m) => <li>{m}</li>)}</ul>
+            </div>
+            <span class="reg-go" aria-label={t.seeDoc}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h11.2l-4.6-4.6L12 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2Z"/></svg></span>
+          </a>
+        </li>
+        <li>
           <a class="reg-row next" href="#next">
             <div class="reg-name"><span class="status open">{t.openSlot}</span><h3>{t.yourIdea}</h3></div>
             <div class="reg-desc-col">
