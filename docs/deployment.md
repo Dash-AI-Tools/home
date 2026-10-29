@@ -35,6 +35,7 @@ Recommended: Settings → Labs → turn on **Private site mode** so the Ghost fr
    - `GHOST_URL`: `https://<ghost-domain>`
    - `GHOST_CONTENT_API_KEY`: the key from step 2
    - `SITE_URL`: `https://<site-domain>` (used for canonical links)
+   - `UMAMI_URL` and `UMAMI_WEBSITE_ID` (optional): the Umami base URL and the website ID from Umami → Websites. Without both, no tracking script is added.
 3. Add the site domain on **Domains**: container port `80`, HTTPS on.
 4. Deploy. If Ghost is unreachable or rejects the key, the build fails with a message such as `[ghost] https://… answered HTTP 401` and the previous version keeps serving. With the three variables unset the build succeeds and `/blog/` shows "No posts have been published yet".
 
