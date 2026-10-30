@@ -44,7 +44,7 @@ export const en = {
     hudMeta: ['v0.3.0', 'TypeScript', 'Claude Code'],
     seeHud: 'See openspec-hud',
     docDesc: 'Syncs the docs of every repository in your GitHub organization and gives the whole org one search box, with Ask the docs and MCP access for AI agents.',
-    docMeta: ['v0.1.0', 'TypeScript', 'Self-hosted'],
+    docMeta: ['v0.2.0', 'TypeScript', 'Self-hosted'],
     seeDoc: 'See DocMyRepos',
     openSlot: 'Open slot',
     yourIdea: 'Your idea',
